@@ -53,10 +53,10 @@
 ### 주차별 주제
 - 1주차 : OpenUp 공통 - git, github
 - 2주차 : OpenUp 공통 - git, github
-- 3주차 : 
-- 4주차 : 
-- 5주차 : 
-- 6주차 : Continue Contribution Ideation.
+- 3주차 : Continue - getting started
+- 4주차 : Continue - model providers, llm 
+- 5주차 : Continue - deepdive 
+- 6주차 : Continue - Contribution Ideation.
 
 ## 모임 일정
 정기, 비정기, 개인, 전체, 소그룹별 모임 이벤트에 대해 정리.
@@ -120,6 +120,9 @@
 원하신다면.. 추진을...
 
 ## Contribution
+contribution을 하기 위해서는 많이 써봐야하고, 많이 쓰기 위해서는 잘 알아야 하고,  
+잘 알기 위해서는 기본적인 사용법부터 세부 기능, 동작원리, 코드 그리고 배경 지식(llm)까지 이해할 수 있어야 함.  
+짧은 기간 체험형 프로그램이므로 멘토링 목표는 모든 멘티분들이 Continue에 대해서는 한국에서 누구보자 잘 이해하고 잘 사용할 수 있는 역량을 갖추도록 돕는것.  
 - [contribution ideas board](https://github.com/orgs/continuedev/projects/2)
 - [contributing guide](https://github.com/continuedev/continue/blob/main/CONTRIBUTING.md)
 - [contribute on Discord](https://discord.gg/vapESyrFmJ)

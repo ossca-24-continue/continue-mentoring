@@ -141,3 +141,4 @@ contribution을 하기 위해서는 많이 써봐야하고, 많이 쓰기 위해
 반대로 말하면 https://amplified.dev/ 에서 이야기 한 것처럼 llm을 활용함으로써 그 전에 비해 10배로 증폭된(amplified)역량을 갖추었다고 볼 수 있다.  
 
 
+## Test

@@ -5,10 +5,7 @@
 [Install | Continue](https://docs.continue.dev/getting-started/install)
 
 <aside>
-💡
-
-해당 문서는 VS Code 기준으로 작성되었습니다.
-
+💡 해당 문서는 VS Code 기준으로 작성되었습니다.
 </aside>
 
 # Continue 설치
@@ -19,9 +16,7 @@
 
 
 <aside>
-📌
-
-[VSCode Continue MarketPlace](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 링크를 통해서도 검색 가능합니다.
+📌  [VS Code MarketPlace](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 링크를 통해서도 검색 가능합니다.
 
 </aside>
 
@@ -32,9 +27,7 @@
 ### Tip
 
 <aside>
-📌
-
-아래와 같이 드래그 하여 Secondary Side Bar 로 이동할 수 있습니다
+📌 아래와 같이 드래그 하여 Secondary Side Bar 로 이동할 수 있습니다
 
 </aside>
 
@@ -42,9 +35,7 @@
 
 
 <aside>
-❗
-
-Secondary Side Bar 를 닫을 경우 좌측 Activity Bar 로 다시 옮겨지지 않습니다.
+❗ Secondary Side Bar 를 닫을 경우 좌측 Activity Bar 로 다시 옮겨지지 않습니다.
 
 - Toggle Secondary Side Bar 를 다시 열어야 활성화 됩니다.
 </aside>
@@ -104,10 +95,10 @@ Continue 는 아래 Chat Model 들에 대해 **Free-Trial** 을 제공해줍니�
 
 **Continue** 에 **Provider**, **Model** 과 **발급받은 API Key** 정보를 등록합니다 
 
-<img width="405" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10 28 25" src="https://github.com/user-attachments/assets/e092344c-4f82-41d9-881f-e93a9aab50b4">
+<img width="500" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10 28 25" src="https://github.com/user-attachments/assets/e092344c-4f82-41d9-881f-e93a9aab50b4">
 
 
-<img width="331" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11 10 04" src="https://github.com/user-attachments/assets/5cf2f422-a832-4838-a29f-61e2a4f8e48f">
+<img width="250" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11 10 04" src="https://github.com/user-attachments/assets/5cf2f422-a832-4838-a29f-61e2a4f8e48f">
 
 
 `config.json` 
@@ -128,12 +119,7 @@ Continue 는 아래 Chat Model 들에 대해 **Free-Trial** 을 제공해줍니�
 ## 2 Local Model 사용
 
 <aside>
-💡
-
-해당 문서는 **Ollama** 를 사용하였습니다. (**Ollama** 설치가 필요합니다.)
-
-https://ollama.com/download
-
+💡 해당 문서는 **Ollama** 를 사용하였습니다. (**Ollama** 설치가 필요합니다.) https://ollama.com/download
 </aside>
 
 아래 명령어로 **Ollama Chat Model** 을 다운받을 수 있습니다.
@@ -165,8 +151,5 @@ ollama pull llama3.1:8b
 ```
 
 <aside>
-💡
-
-**설정이 완료 하였으면 사용법은 다음 문서에 있습니다**
-
+💡 **설정을 완료 하였으면 사용법은 다음 문서에 있습니다**
 </aside>

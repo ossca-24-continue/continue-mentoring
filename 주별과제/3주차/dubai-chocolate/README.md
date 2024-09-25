@@ -2,15 +2,14 @@
 
 ## 목차
 
-1. [팀 소개](#팀-소개)
-2. [설치](#설치)
-3. [설정](#설정)
-4. [주요 기능](#주요-기능)
-   - [Edit](#edit)
-   - [Comment](#comment)
-   - [Share](#share)
-   - [Cmd](#cmd)
-   - [Commit](#commit)
+- [팀 소개](#팀-소개)
+- [설치](#설치)
+- [설정](#설정)
+- [주요 기능](#주요-기능)
+  - [Chat](#chat)
+  - [Autocomplete](#autocomplete)
+  - [Edit](#edit)
+  - [Actions](#actions)
 
 ## 팀 소개
 
@@ -27,12 +26,10 @@
 
 ## 주요 기능
 
+### chat
+
+### autocomplete
+
 ### edit
 
-### comment
-
-### share
-
-### cmd
-
-### commit
+### actions

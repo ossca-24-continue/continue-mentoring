@@ -127,7 +127,7 @@ Continue는 아래 Chat Model에 대해 최대 50회 사용 가능한 **Free-Tri
 #### 2-2. API Key 발급받기
 
 - Create new secret key를 눌러 새로운 키를 발급받고 복사합니다.
-- 한번 발급된 키를 다시 확인할 수 없으므로 반드시 **복사 or 백업**합니다.
+- 한번 발급된 키를 다시 확인할 수 없으므로 반드시 **복사 or 백업** 합니다.
 
 #### 2-3. config.json 수정하기
 
@@ -136,8 +136,6 @@ Continue는 아래 Chat Model에 대해 최대 50회 사용 가능한 **Free-Tri
 - Extension에서 add 버튼을 눌러 자동으로 추가되도록 하거나, config.json 파일을 직접 수정할 수 있습니다.
 
 ```json
-// config.json 예시
-
 {
   "models": [
     {
@@ -164,7 +162,7 @@ Continue는 아래 Chat Model에 대해 최대 50회 사용 가능한 **Free-Tri
 
 *해당 문서에서는 Ollama를 사용하여 진행했습니다.
 
-**실행 환경 :**
+실행 환경 :
 - Device: Macbook Air M2
 - OS: MacOS 15.0
 - Ram: 16GB
@@ -196,8 +194,6 @@ Continue는 아래 Chat Model에 대해 최대 50회 사용 가능한 **Free-Tri
 이제 Continue와 로컬에서 실행 중인 Ollama를 연결하기 위해 Continue의 config.json 파일을 아래와 같이 수정합니다.
 
 ```json 
-// config.json
-
 {  
   "models": [  
     {  
@@ -224,22 +220,22 @@ Continue의 Chat 탭에 질문을 넣으면 AI가 해당 질문에 대한 대답
 <img width="1272" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_101602" src="https://github.com/user-attachments/assets/fe8a759d-764b-48e7-b46d-51370e036388">
 
 
-### [Autocomplete](https://docs.continue.dev/autocomplete/how-to-use-it) 
+### [Autocomplete](https://docs.continue.dev/autocomplete/how-to-use-it)
 
 Autocomplete를 사용하려면 config.json에 다음과 같이 Model을 설정합니다.
 
 ```json
-// config.json
- { 
-  /* model ... */
+ {
   "tabAutocompleteModel":     {
-    "title": "GPT-4o (Free Trial)", // 설정한 모델
+    "title": "GPT-4o (Free Trial)",
     "provider": "free-trial",
     "model": "gpt-4o",
     "systemMessage": "You are an expert software developer. You give helpful and concise responses."
   },
  }
 ```
+
+<img width="368" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10 40 00" src="https://github.com/user-attachments/assets/b741a4c5-5749-42c4-b4d9-5c35109b607a">
 
 <img width="302" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-24_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10 52 59" src="https://github.com/user-attachments/assets/5aa35389-dec5-48dd-ad73-18b53a07da26">
 
@@ -269,7 +265,7 @@ Edit 기능으로 현재 파일을 벗어나지 않고 IDE 상에서 코드를 �
 - `cmd/ctrl + shift + enter` : 모든 변경 사항을 반영합니다.
 - `cmd/ctrl + shift + delete` : 모든 변경 사항을 거절합니다.
 
-  <img width="942" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7 47 00" src="https://github.com/user-attachments/assets/7b6922e6-b2ee-4dc5-8db9-92708c50514c">
+<img width="942" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7 47 00" src="https://github.com/user-attachments/assets/7b6922e6-b2ee-4dc5-8db9-92708c50514c">
 
 
 ### [Actions](https://docs.continue.dev/getting-started/overview)
@@ -283,6 +279,29 @@ Actions 기능은 단축어 기능과 유사합니다.
 
 '/'를 타이핑하여 원하는 Action을 선택하고 실행시키면 AI가 해당 Action을 실행합니다. 
 
+아래는 /edit와 /comment의 예시입니다.
+
+**/edit**
+
+1. 특정 코드를 질문에 추가하고 `/edit` 을 사용
+
+<img width="939" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7 47 21" src="https://github.com/user-attachments/assets/8755d4bc-c17d-40e7-8e85-6345e8ec69cd">
+하여 원하는 내용을 반영하게 합니다.
+
+2. 변경 사항을 반영 혹은 거절할 수 있습니다.
+
+<img width="934" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7 48 31" src="https://github.com/user-attachments/assets/1720b889-8376-4ab7-b208-f9b706655528">
+
+**/comment**
+
+1. 특정 코드를 질문에 추가하고 `/comment` 을 사용하여 주석을 추가합니다.
+
+<img width="973" alt="%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-25_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_7 48 52" src="https://github.com/user-attachments/assets/1ef388f1-7084-4e0b-850d-689cc88db900">
+
+2. 변경 사항을 반영 혹은 거절할 수 있습니다.
+
+![0f842101-535d-4590-bfcb-902b7b232ec8](https://github.com/user-attachments/assets/ac4bbd4a-f2c8-4369-8d0f-0b5562596d23)
+
 #### Slash (/) Command
 
 다음과 같은 **slashCommands** 를 기본적으로 제공합니다.
@@ -293,9 +312,10 @@ Actions 기능은 단축어 기능과 유사합니다.
 - `cmd` : 주어진 입력에 맞는 cmd 명령어를 생성합니다.
 - `commit` : **git diff** 제공 시 git commit 메시지를 생성합니다.
 
-```json
-// config.json
+설정은 config.json에서 가능합니다.
 
+```json
+{
   "slashCommands": [
     {
       "name": "edit",
@@ -318,9 +338,11 @@ Actions 기능은 단축어 기능과 유사합니다.
       "description": "Generate a git commit message"
     }
   ],
+}
 ```
 
 #### Build a custom prompt
+
 **.prompt** 파일을 통해 커스텀 슬래쉬 명렁어를 생성할 수 있습니다.
 
 1. 워크스페이스 최상단에 `.prompts/` 폴더를 직접 생성하거나, chat box 밑의 Build a custom prompt를 누르면 워크스페이스 최상단에 .prompt라는 폴더가 생성됩니다.

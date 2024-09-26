@@ -4,30 +4,50 @@
 
 ### Timing : Too many Request를 줄이는 전략
 1. `debounce`
-  - 입력이 끝난 후 일정 시간이 흐른 후에야 autocomplete task가 실행됩니다.
-  - 기본은 350ms 입니다. 즉, 키 입력 350ms 이후 autocomplete task가 실행됩니다.
-  - `debounceDelay: int` 옵션으로 제어할 수 있습니다.
+  - autocomplete task는 키 입력이 끝난 후 설정한 시간이 지난 후에 실행됩니다.
+  - 연속된 입력 이벤트를 하나로 처리하는 전략인 debounce를 사용합니다.
+  - 기본은 350ms 입니다.
+    - 즉, 키 입력 이후 350ms만큼 기다린 후에 autocomplete task가 실행됩니다.
+  - `debounceDelay: number` 옵션으로 제어할 수 있습니다.
 2. `caching`
   - 경량 데이터베이스인 `sqlite3`에 autocomplete 결과를 캐싱하는 전략입니다.
-    - ![cache code](assets/cache-code.png)
-  1. autocomplete task 이후, 프롬프트의 prefix를 key로 설정해 답변을 `cache` 테이블에 저장합니다.
     ```ts
     // core/autocomplete/cache.ts
+    import { Mutex } from "async-mutex";
+    import { open } from "sqlite";
+    import sqlite3 from "sqlite3";
+    import { DatabaseConnection } from "../indexing/refreshIndex.js";
+    import { getTabAutocompleteCacheSqlitePath } from "../util/paths.js";
+
+    export class AutocompleteLruCache {
+      private static capacity = 1000;
+      private mutex = new Mutex();
+
+      db: DatabaseConnection;
+
+      constructor(db: DatabaseConnection) {
+        this.db = db;
+      }
+      // ...
+    ```
+  1. autocomplete task 이후, 프롬프트의 prefix를 key로 설정해 답변을 `cache` 테이블에 저장합니다.
+  ```ts
+  // core/autocomplete/cache.ts
       await this.db.run(
         "INSERT INTO cache (key, value, timestamp) VALUES (?, ?, ?)",
         prefix,
         completion,
         Date.now(),
       );
-    ```
+  ```
   2. 동일한 요청을 보내기 전, cache 테이블에 저장된 결과를 확인해 사용합니다.
-    ```ts
+  ```ts
     const result = await this.db.get(
       "SELECT key, value FROM cache WHERE ? LIKE key || '%' ORDER BY LENGTH(key) DESC LIMIT 1",
       prefix,
     );
-    ```
-    - 쿼리 해석: `prefix`로 시작하는 모든 결과를 고려하되, 가장 key가 긴 결과 1개를 읽습니다.
+  ```
+  - SELECT 쿼리 내용: `prefix`로 시작하는 모든 결과를 고려하되, 가장 key가 긴 결과 1개를 읽습니다.
   - `useCache: bool` 옵션으로 제어할 수 있습니다.
 
 ### Filtering : 불완전한 LLM 응답을 보완하는 전략

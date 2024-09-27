@@ -395,17 +395,7 @@ Continue가 추천해준 자동완성을 모두 적용하려면 `Esc` 키를 누
 
 Continue 공식문서에서는 자동완성 기능을 사용할 때 [Mistral API](https://console.mistral.ai/)에서 제공하는 Codestral 모델을 사용하는 것을 추천하고 있습니다. 코드 맥락을 잘 이해해 고품질의 자동완성 기능을 제공하기 때문입니다.
 
-[공식문서](https://docs.continue.dev/customize/model-types/autocomplete)를 보고 Codestral을 사용하던 중 잘못된 API KEY를 사용하고 있다는 오류를 발견했습니다.
-
-다행히 공식문서에 해결방법이 나와있었는데요. mistral에서는 일반 API key와 Codestral의 API key가 다릅니다.
-
-_Mistral API Key_
-<img width="1460" alt="mistral api key" src="https://github.com/user-attachments/assets/806c2a3e-9b83-4f13-8431-706888490abd">
-
-_Codestral API Key_
-<img width="1436" alt="codestral api key" src="https://github.com/user-attachments/assets/98cfbb83-e6af-46dc-8931-6e43747700f0">
-
-Codestral의 API key를 넣어야 하는데 mistral의 API key를 넣어서 발생했습니다.
+config.json에 아래와 같이 작성하면 됩니다.
 
 ```json title="config.json""
 {
@@ -432,7 +422,7 @@ Codestral의 API key를 넣어야 하는데 mistral의 API key를 넣어서 발�
 }
 ```
 
-### 로컬, offLine / 혹은 자체 호스팅
+### Local, offline / self-hosted experience
 
 로컬과 자체 호스팅에서는 `StarCoder2-3b` 모델을 추천합니다.
 
@@ -446,14 +436,14 @@ Codestral의 API key를 넣어야 하는데 mistral의 API key를 넣어서 발�
 }
 ```
 
-### 대안
+### Alternative experiences
 
 - 하드웨어가 좋지 않다면 `deepseek-coder:1.3b-base`를 추천합니다.
 - 하드웨어가 좋다면 `deepseek-coder:6.7b-base` 모델을 사용하면 더욱 고품질의 자동완성을 제공합니다.
 
 > LM Studio 사용자의 경우 "My Models" 섹션으로 이동하여 원하는 모델을 찾고 경로를 복사하세요(예: second-state/StarCoder2-3B-GGUF/starcoder2-3b-Q8_0.gguf). 이 경로를 config의 `model` 값으로 사용하세요.
 
-### 다른 모델들
+### Other experiences
 
 다른 모델들 링크 [here](../customize/model-types/autocomplete.md).
 
@@ -472,17 +462,48 @@ Codestral의 API key를 넣어야 하는데 mistral의 API key를 넣어서 발�
 > LSP 간단 설명
 > 프로그래밍을 할 때 자동 완성, 정의로 이동, 모든 참조 찾기와 같은 똑똑한 도구들을 쉽게 지원하기 위해서 사용되는 프로토콜이라고 합니다.
 
-### 파일들 Import
+### Imported files
 
 모든 import를 포함할 수는 없습니다. 대신, 커서 주변의 변수 중 일치하는 임포트가 있는 것을 찾아 맥락(context)으로 사용합니다.
 
-### 최근 파일들
+### Recent files
 
 최근에 열었거나 편집한 파일을 자동으로 고려하여 현재 자동완성과 관련된 스니펫을 포함합니다.
 
 ## [Autocomplete] 트러블 슈팅 및 후기
 
-- [continue 세팅후기](https://velog.io/@ehdghks12/2024-OSSCA-Continue-1)
+### 후기
+
+[continue 세팅후기](https://velog.io/@ehdghks12/2024-OSSCA-Continue-1)
+
+### codestral api key 등록 관련 트러블 슈팅
+
+[공식문서](https://docs.continue.dev/customize/model-types/autocomplete)를 보고 Codestral을 사용하던 중 잘못된 API KEY를 사용하고 있다는 오류를 발견했습니다.
+
+다행히 공식문서에 해결방법이 나와있었는데요. mistral에서는 일반 API key와 Codestral의 API key가 다릅니다.
+
+_Mistral API Key_
+<img width="1460" alt="mistral api key" src="https://github.com/user-attachments/assets/806c2a3e-9b83-4f13-8431-706888490abd">
+
+_Codestral API Key_
+<img width="1436" alt="codestral api key" src="https://github.com/user-attachments/assets/98cfbb83-e6af-46dc-8931-6e43747700f0">
+
+Codestral의 API key를 넣어야 하는데 mistral의 API key를 넣어서 발생했습니다.
+만약 팀과 api key를 공유하거나 mistral api를 사용하려면 아래처럼 apiBase를 설정해야 합니다.
+
+```json title="config.json""
+{
+  "tabAutocompleteModel": {
+    "title": "Codestral",
+    "provider": "mistral",
+    "model": "codestral-latest",
+    "apiKey": "YOUR_API_KEY",
+    "apiBase": "https://api.mistral.ai/v1" // 이부분 추가
+  }
+}
+```
+
+### 03.3. 그 외 기타
 
 - markdown을 작성할때 자동완성 기능이 작동해 아래와 같이 너무 많은 api 요청을 보낸다는 오류가 발생했습니다.
   markdown을 작성할때에는 autuComplete 기능을 disable했는데 파일 형식에 따라 자동으로 on/Off하는 기능이 있으면 좋을 것 같습니다.

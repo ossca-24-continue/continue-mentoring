@@ -28,7 +28,6 @@
 
 ## 1. 서론
 ### AI 코딩 어시스턴트의 중요성
-
 AI 코딩 어시스턴트는 다음과 같은 도움을 줄 수 있습니다.
 
 1. 생산성 향상 : AI 코딩 어시스턴트는 반복적인 코딩 작업을 자동화하고, 코드 제안을 통해 개발 속도를 크게 향상시킵니다.
@@ -47,13 +46,25 @@ AI 코딩 어시스턴트는 다음과 같은 도움을 줄 수 있습니다.
 (출처 : https://www.ciokorea.com/column/332463#csidxbf73e79569815958421edb8ab0aae4c, 검색일 : 2024.09.23)  
 
 
-
 ## 2. AI 코딩 어시스턴트 도구 조사
 ### Amazon CodeWhisperer
 ...
 
 ### Codex
-...
+Codex는 OpenAI에서 개발한 AI Coding Assistant 도구입니다. 
+
+현재 Github Copilot, TabNine등과 같은 AI coding assistant도 Third-party extensions로서 Codex를 사용(leverage)하고 있습니다.
+
+특징
+
+- Model : OpenAI GPT 모델을 자체적으로 fine-tuning하여 Coding assistant에 특화된 모델을 사용
+- 지원 언어 : 12개 이상의 언어(Python, JavaScript, Java, C++, C#, Ruby, PHP, Swift, TypeScript, Rust, Haskell, Kotlin … )에 적용할 수 있음(Python이 가장 특화됨)
+- 자연어 처리
+    - ex) “배열을 오름차순으로 정렬하는 코드를 알려줘”를 입력하면 해당 기능을 수행하는 코드를 출력
+    - **OpenAI의 GPT 모델**을 직접 사용하는 만큼 타 coding assistant 서비스에 비해 자연어 처리 성능이 탁월할 것으로 예상
+- 가격 : GPT3-5 기준 0.02$ / 1000 tokens (1000 tokens = 750 영문자), token은 input과 output을 모두 합친 것
+
+최근에는 Github와 OpenAI가 협업하여 Github Copilot 역시 OpenAI의 모델을 사용하고 있습니다.
 
 ### Cursor
 ...
@@ -124,12 +135,12 @@ Continue는 IDE 익스텐션 형식으로 제공되는 오픈소스 기반의 AI
 
 
 ### 다른 도구와 차별화되는 특징
-- **오픈 소스** : 오픈 소스 프로젝트로 운영되는 만큼 커뮤니티의 참여와 지원을 받을 수 있습니다.
+
+- **오픈 소스** : 오픈 소스 프로젝트로 운영되는 만큼 커뮤니티의 참여와 지원을 받을 수 있습니다. 
 - **무료** : Continue는 무료로 제공되어 비용 부담 없이 활용할 수 있습니다.
 - **모델 선택의 유연성** : Continue는 연결할 모델을 직접 선택할 수 있어 사용자의 요구사항에 맞춘 솔루션을 만들 수 있습니다.
 - **컨텍스트의 다양성** : 대부분의 코드 어시스턴트 도구가 컨텍스트로 제공할 수 있는 데이터가 코드베이스 및 현재 레포지토리의 파일에 한정되어 있는 반면, Continue는 컨텍스트로 다양한 데이터를 선택할 수 있습니다. 여기엔 url, Github/Jira 이슈, 데이터베이스 테이블, 구글 검색 결과 등이 포함됩니다.
 - **확장성** : Continue는 높은 커스터마이즈 기능을 제공하여 확장할 수 있는 자유도가 높습니다.
-
 
 ## 4. 결론
 ### AI 코딩 어시스턴트 도구의 현재와 미래

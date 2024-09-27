@@ -327,7 +327,7 @@ Context Provider는 사용자가 생각하는 대부분의 것을 RAG의 형태�
 
 내 파일에 있는 것 뿐만 아니라 온라인 상에 있는 자료도 context에 넣고 싶다면 이 context provider을 사용하면 됩니다. URL 상에 있는 자료들을 markdown의 형태로 변환하여 context에 함께 들어가게 됩니다.
 
-비슷하게 @google을 사용하게 된다면 구글 검색 엔진을 통해 나온 결과를 context에 포함하게 됩니다.
+비슷하게 `@google`을 사용하게 된다면 구글 검색 엔진을 통해 나온 결과를 context에 포함하게 됩니다.
 
 #### `@GitHub Issues`
 

@@ -111,6 +111,10 @@
 
 ### Continue CTO와의 만남?
 원하신다면.. 추진을...
+```
+From Nate(Continue Co-founder, CTO)
+Hi all! This is Nate from Continue (sestinj on GitHub). I'm super excited to hear that you'll be contributing to Continue—there's a lot of opportunity to make a really big impact for many developers worldwide, so I can't wait to see what you're able to do. I'll be in contact with Benedict(저입니다.), but if any of you have questions for me, you are always more than welcome to message me on Discord, or ask questions in the contributing channel. Best of luck, I hope it's fun, and let me know how I can help!
+```
 
 ### Contribution MVP
 전체 기간 동안 유의미한 기여활동을 가장 많이한 멘티 3명 선정. 상품

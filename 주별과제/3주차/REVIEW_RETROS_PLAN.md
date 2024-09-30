@@ -12,7 +12,7 @@
 - 4조 - continue4u : continue edit, actions 기능 상세 리뷰
 
 ### 조별 발표
-- 조별 5분
+- 조별 10분
 
 ## 2. 회고
 - 4L(liked 좋았던것, learned 배운것, lacked 부족했던것, longed-for 바랬던것)

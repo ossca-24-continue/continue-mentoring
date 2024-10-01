@@ -1,7 +1,7 @@
 # Continue의 RAG (Retrieval-Augmented Generation) 워크플로
 
-sesti의 discord message를 참고했습니다.
-![sesti-message](assets/4_sesti-message.png)
+maintainerddiscord을 참고했습니다.
+![alt text](assets/4_sesti-message.png)
 
 ## 개요
 
@@ -78,30 +78,78 @@ graph TD
 
 5. **전문 검색 인덱스 생성**
    - 결과 보강을 위한 전문 검색 인덱스를 SQLite에 생성 및 저장합니다.
+자잘한 설명 부분 ~~ 합니다. 로 자연스럽게 바꿔줘. 
 
 ### 2. 쿼리 프로세스
 
-1. **사용자 쿼리 접수**
+1. **사용자 쿼리 접수 (User Query)**
    - `@codebase` 감지 시 RAG 프로세스를 시작합니다.
-   - 쿼리를 청킹하고 임베딩합니다.
+   - query를 chunking하고, 저장한 벡터와 비교할 수 있도록 임베딩합니다.
 
-2. **유사도 검색** 
-   - 벡터 데이터베이스에서 유사도 기반 검색 결과를 가져옵니다.
+2. **유사도 검색 (Similarity Search)**
+   - 벡터 데이터베이스(LanceDB)에서 유사도 기반 검색으로 결과를 가져옵니다.
 
-3. **전문 검색**
-   - SQLite 전문 검색 인덱스로 추가 결과를 검색합니다.
-   - BM25 알고리즘으로 랭킹 ~~ 합니다.
+3. **전문 검색 (Full-text Search)**
+   - SQLite의 전문 검색 인덱스를 활용하여 추가 결과를 검색합니다.
+   - BM25 알고리즘 기반으로 랭킹합니다.
+   - `fts` 테이블 기준으로 `fts_metadata` 테이블 등을 JOIN해 사용합니다.
 
-4. **LLM 저장소 맵**
-   - LLM에 "저장소 맵"을 제시하고 관련 파일을 식별 요청합니다.
-   - `requestFilesFromRepoMap` 함수로 LLM 분석 결과를 가져옵니다.
+4. **LLM 저장소 맵 (LLM Repo Map)**
+   - LLM에 "저장소 맵"을 제시하고 파일 식별을 요청합니다.
+   - 이런 프롬프트를 사용합니다.
+    - ```ts
+       const prompt = `${repoMap}
 
-5. **재순위화**
-   - 이전 단계의 모든 후보 파일 순위를 재조정합니다.
-   - LLM 기반 재순위화 모델로 낮은 점수 결과를 필터링 ~~ 합니다.
+        Given the above repo map, your task is to decide which files are most likely to be relevant in answering a question. Before giving your answer, you should write your reasoning about which files/folders are most important. This thinking should start with a <reasoning> tag, followed by a paragraph explaining your reasoning, and then a closing </reasoning> tag on the last line.
 
-6. **최종 결과 제공**
-   - 재순위화 및 확장된 결과 중 상위 결과를 반환합니다.
-   - 사용자 쿼리와 가장 관련성 높은 코드 청크를 제공합니다.
+        After this, your response should begin with a <results> tag, followed by a list of each file, one per line, and then a closing </results> tag on the last line. You should select between 5 and 10 files. The names that you list should be the full path from the root of the repo, not just the basename of the file.
 
-이러한 복합 워크플로를 통해 Continue는 경량 로컬 모델의 효율성과 다양한 검색 방법의 장점을 결합하여 높은 정확도의 코드 검색 결과를 제공합니다.
+        This is the question that you should select relevant files for: "${input}"`;
+        ```
+
+5. **재순위화 (Reranker)**
+   - 이전 단계에서 얻은 모든 점수들로, (FTS, 임베딩, 최근 편집 파일, 저장소 맵)의 순위를 재조정합니다.
+   - LLM 기반 재순위 모델을 사용해 최종 점수를 매깁니다.
+   - 이런 few-shot 프롬프트를 사용합니다.
+     - ```ts
+        const prompt = `You are an expert software developer responsible for helping detect whether the retrieved snippet of code is relevant to the query. For a given input, you need to output a single word: "Yes" or "No" indicating the retrieved snippet is relevant to the query.
+
+          Query: Where is the FastAPI server?
+          Snippet:
+          \`\`\`/Users/andrew/Desktop/server/main.py
+          from fastapi import FastAPI
+          app = FastAPI()
+          @app.get("/")
+          def read_root():
+              return {{"Hello": "World"}}
+          \`\`\`
+          Relevant: Yes
+
+          Query: Where in the documentation does it talk about the UI?
+          Snippet:
+          \`\`\`/Users/andrew/Projects/bubble_sort/src/lib.rs
+          fn bubble_sort<T: Ord>(arr: &mut [T]) {{
+              for i in 0..arr.len() {{
+                  for j in 1..arr.len() - i {{
+                      if arr[j - 1] > arr[j] {{
+                          arr.swap(j - 1, j);
+                      }}
+                  }}
+              }}
+          }}
+          \`\`\`
+          Relevant: No
+
+          Query: ${query}
+          Snippet:
+          \`\`\`${documentId}
+          ${document}
+          \`\`\`
+          Relevant: 
+          `;
+          ```
+
+6. **최종 결과 제공 (Top Results)**
+   - 최종 순위에 맞춰, 사용자 쿼리에 가장 관련성 높은 코드 chunk를 제공합니다.
+
+이러한 복합 워크플로를 통해, Continue는 경량 로컬 모델과 다양한 NLP task를 결합하여 빠르면서도 높은 정확도의 코드 검색 결과를 제공하고자 했습니다.

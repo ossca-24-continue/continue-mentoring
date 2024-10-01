@@ -1,7 +1,7 @@
 # Continue의 RAG (Retrieval-Augmented Generation) 워크플로
 
-maintainerddiscord을 참고했습니다.
-![alt text](assets/4_sesti-message.png)
+sesti의 discord message를 참고했습니다.
+![sesti-message](assets/4_sesti-message.png)
 
 ## 개요
 
@@ -82,12 +82,27 @@ graph TD
 
 ### 2. 쿼리 프로세스
 
-1. **사용자 쿼리 접수 (User Query)**
+1. **사용자 쿼리 접수**
    - `@codebase` 감지 시 RAG 프로세스를 시작합니다.
    - query를 chunking하고, 저장한 벡터와 비교할 수 있도록 임베딩합니다.
 
 2. **유사도 검색 (Similarity Search)**
    - 벡터 데이터베이스(LanceDB)에서 유사도 기반 검색으로 결과를 가져옵니다.
+   - 꽤 많은 문서를 post-filtering 느낌으로 싹 긁어옵니다.
+     - ```ts
+         // core/indexing/LanceDbIndex.ts 
+         const table = await db.openTable(tableName);
+         let query = table.search(vector);
+         if (directory) {
+           // seems like lancedb is only post-filtering, so have to return a bunch of results and slice after
+           query = query.where(`path LIKE '${directory}%'`).limit(300);
+         } else {
+           query = query.limit(n);
+         }
+         const results = await query.execute();
+         return results.slice(0, n) as any;
+         ```
+
 
 3. **전문 검색 (Full-text Search)**
    - SQLite의 전문 검색 인덱스를 활용하여 추가 결과를 검색합니다.
@@ -98,6 +113,7 @@ graph TD
    - LLM에 "저장소 맵"을 제시하고 파일 식별을 요청합니다.
    - 이런 프롬프트를 사용합니다.
     - ```ts
+       // core/context/retrieval/repoMapRequest.ts 
        const prompt = `${repoMap}
 
         Given the above repo map, your task is to decide which files are most likely to be relevant in answering a question. Before giving your answer, you should write your reasoning about which files/folders are most important. This thinking should start with a <reasoning> tag, followed by a paragraph explaining your reasoning, and then a closing </reasoning> tag on the last line.
@@ -112,6 +128,7 @@ graph TD
    - LLM 기반 재순위 모델을 사용해 최종 점수를 매깁니다.
    - 이런 few-shot 프롬프트를 사용합니다.
      - ```ts
+       // core/context/rerankers/llm.ts 
         const prompt = `You are an expert software developer responsible for helping detect whether the retrieved snippet of code is relevant to the query. For a given input, you need to output a single word: "Yes" or "No" indicating the retrieved snippet is relevant to the query.
 
           Query: Where is the FastAPI server?

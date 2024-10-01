@@ -1,5 +1,8 @@
 # Continue의 RAG (Retrieval-Augmented Generation) 워크플로
 
+sesti의 discord message를 참고했습니다.
+![sesti-message](assets/4_sesti-message.png)
+
 ## 개요
 
 Continue는 주로 `@codebase` 검색 시 RAG를 사용합니다. continue에서의 RAG 시스템의 주요 특징은 다음과 같습니다.
@@ -70,7 +73,7 @@ graph TD
 4. **벡터 DB 저장**
    - 생성된 임베딩을 로컬 벡터 데이터베이스에 저장합니다.
    - SQLite의 lance_db_cache 테이블에서 캐싱합니다.
-   - ![table_lance_db_cache](assets/4_lance_db_cache.png)
+   - ![table-lance-db-cache](assets/4_lance-db-cache.png)
      - SQLite의 `lance_db_cache` 테이블에서 vector는 `embedding vector`, contents는 `text chunk`에 해당합니다.
 
 5. **전문 검색 인덱스 생성**

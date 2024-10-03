@@ -5,12 +5,13 @@
     - [1-1. config.json \> completionOption](#1-1-configjson--completionoption)
     - [1-2. config.json \> models \> completionOptions](#1-2-configjson--models--completionoptions)
     - [1-3. completionOptions](#1-3-completionoptions)
-  - [2. Slash (/) Command](#2-slash--command)
-    - [2-1. 내장된 Slash (/) Command](#2-1-내장된-slash--command)
-    - [2-2. 슬래시 명령어를 커스텀하는 법](#2-2-슬래시-명령어를-커스텀하는-법)
-      - [With .prompt files](#with-prompt-files)
-      - [With config.ts](#with-configts)
-  - [3. 커스텀 슬래시 명령어 예시](#3-커스텀-슬래시-명령어-예시)
+  - [2. Custom slash commands](#2-custom-slash-commands)
+    - [2-1. 내장된 Slash (/) Command 목록 훑어보기](#2-1-내장된-slash--command-목록-훑어보기)
+    - [2-2. .prompt 파일](#2-2-prompt-파일)
+      - [.prompt 파일을 구성할 형식](#prompt-파일을-구성할-형식)
+    - [2-3. 슬래시 명령어를 커스텀하는 법](#2-3-슬래시-명령어를-커스텀하는-법)
+      - [customCommands(config.json)](#customcommandsconfigjson)
+      - [Custom Slash Commands(config.ts)](#custom-slash-commandsconfigts)
 
 ## [1. Continue에서 completionOption 설정하기](https://docs.continue.dev/customize/config)
 
@@ -89,11 +90,11 @@ completionOptions는 AI 모델이 텍스트를 생성할 때 생성할 텍스트
 
 - `keepAlive` : 로컬에서 모델을 실행할 때, 세션을 유지하기 위한 옵션입니다. 이 설정이 활성화되면 모델이 일정 시간 동안 유휴 상태로 있더라도 종료되지 않고 계속 활성화된 상태를 유지합니다.
 
-## 2. Slash (/) Command
+## 2. Custom slash commands
 
-### 2-1. 내장된 Slash (/) Command
+### 2-1. 내장된 Slash (/) Command 목록 훑어보기
 
-Continue는 다음의 **slashCommands** 를 기본적으로 제공합니다.
+Continue는 다음의 **slashCommand 명령어** 를 기본적으로 제공합니다.
 
 - `edit` : 선택된 코드 블럭에 주어진 입력을 반영해서 변경합니다.
 - `comment` : 선택된 코드 블럭에 주석을 추가합니다.
@@ -172,13 +173,7 @@ Continue에 내장된 슬래시 명령어를 사용하려면 config.json에 다�
 
 ![alt text](asset/comment-1.png)
 
-### 2-2. 슬래시 명령어를 커스텀하는 법
-
-위와 같은 내장 슬래시 명령어를 사용하는 게 아니라 프롬프트를 커스텀하여 사용할 수도 있습니다.
-
-사용자 정의 슬래시 명령을 추가하는 방법은 두 가지가 있습니다.
-
-#### [With .prompt files](https://docs.continue.dev/customize/deep-dives/prompt-files)
+### [2-2. .prompt 파일](https://docs.continue.dev/customize/deep-dives/prompt-files)
 
 1. 워크스페이스 최상단에 `.prompts/` 폴더를 직접 생성하거나, chat box 밑의 Build a custom prompt를 누르면 워크스페이스 최상단에 .prompts라는 폴더가 생성됩니다.
 
@@ -193,19 +188,18 @@ Continue에 내장된 슬래시 명령어를 사용하려면 config.json에 다�
 <system>
 You will be acting as a senior software engineer helping a colleague document their code.
 </system>
-
 You will follow the guidelines for writing great code comments:
 {{{ url "https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/" }}}
-
 ---
-
 Using this information, write a comment for the following code:
 {{{ input }}}
 ```
+#### .prompt 파일을 구성할 형식
+** 공식문서에서 다음 형식은 실험적이며, 변경될 수도 있다고 설명하고 있습니다. 
+
+**System 태그**
 
 시스템 메세지를 통해 시스템에게 역할을 부여해주고, 지시, 요구사항을 알려줍니다.
-
-**System message**
 
 ```text
 <system>
@@ -213,13 +207,42 @@ Using this information, write a comment for the following code:
   </system>
 ```
 
-**Built-in variables**
+
+**서문**
+
+```json
+temperature: 0.5
+maxTokens: 4096
+---
+// <system>
+// You are an expert programmer
+// </system>
+
+// ....
+```
+
+서문은 --- 구분 기호 위에서 YAML 구문을 사용해서 모델 매개변수를 지정할 수 있게 합니다. 필요하지 않다면 --- 구분 기호까지 생략합니다. 다음은 지원하는 매개변수명입니다.
+
+- name
+- temperature
+- topP
+- topK
+- minP
+- presencePenalty
+- frequencyPenalty
+- mirostat
+- stop
+- maxTokens
+- description
+
+
+**내장 변수**
 
 현재 사용 가능한 기본 제공 변수는 다음과 같습니다.
 
 - `{{{ input }}}` : 슬래시 명령과 함께 전송되는 사이드바의 입력 상자의 전체 텍스트
 - `{{{ currentFile }}}` : 현재 IDE에서 열려 있는 파일
-- `{{{ ./path/to/file.js }}}` : 모든 파일을 직접 참조할 수 있습니다.
+- `{{{ ./path/to/file.js }}}` : 모든 파일을 직접 참조 가능
 
 아래는 기본 제공 변수를 통해 파일을 참조하는 예시입니다.
 
@@ -229,15 +252,10 @@ Using this information, write a comment for the following code:
 </system>
 
 Here is a summary of the provided Rails application:
-
 Gemfile: {{{ ./Gemfile }}}
-
 Schema: {{{ ./db/schema.rb }}}
-
 ---
-
 Here is the question / code to give expert advice on.
-
 {{{ input }}}
 ```
 
@@ -255,28 +273,60 @@ Config.json에 추가한 모든 컨텍스트 공급자는 컨텍스트 공급자
 You will be acting as a senior software engineer helping to debug
 a terminal error.
 </system>
-
 Here is the error that the user received:
 {{{ terminal }}}
-
 Here is the documentation for Jest that you will use to help
 the user troubleshoot the error:
 {{{ docs "https://jestjs.io/docs/getting-started" }}}
 ```
 
-#### [With config.ts](https://docs.continue.dev/actions/how-to-customize#other-custom-actions)
 
-자연어로 사용자 지정 명령을 작성하는 것보다 한 단계 더 나아가려면 응답을 반환하는 사용자 지정 함수를 작성할 수 있습니다.
+### [2-3. 슬래시 명령어를 커스텀하는 법](https://docs.continue.dev/customize/tutorials/build-your-own-slash-command#custom-slash-commands)
 
-이를 위해서는 config.json 대신 config.ts를 사용해야 하는데, 이곳에서 SlashCommands 배열에 새로운 slashCommand 객체를 slashCommands 배열에 추가합니다.
+위와 같은 내장 슬래시 명령어를 사용하는 게 아니라 프롬프트를 커스텀하여 사용할 수도 있습니다.
+
+사용자 정의 슬래시 명령을 추가하는 방법은 두 가지가 있습니다.
+
+- 자연어 프롬프트 (customCommands 속성, config.json)
+- 함수를 작성해 프롬프트 (slashCommands 속성, config.ts)
+
+
+#### customCommands(config.json)
+
+config.json 파일에 customCommands 속성을 추가하는 것으로 slash commands를 만들 수 있습니다.
+
+- `name` : 슬래시 명령을 호출하는 데 입력할 이름
+- `description` : 드롭다운 메뉴에 표시되는 설명
+- `prompt` : Handlebars 구문을 사용한 템플릿 작성을 지원
+  - `input` : 슬래시 명령으로 입력한 추가 입력. 예를 들어, 를 입력하면 /test only write one test. input여기 only write one test에는 강조 표시된 코드 블록도 포함됩니다.
+  - `file name`: 절대 경로나 현재 작업 디렉토리를 기준으로 한 상대 경로를 제공하여 모든 파일을 참조할 수 있습니다.
+
+다음 예시를 보면 자연어로 작성된 명령어를 정의하는 것을 알 수 있습니다.
+
+```json
+customCommands=[{
+        "name": "check",
+        "description": "Check for mistakes in my code",
+        "prompt": "{{{ input }}}\n\nPlease read the highlighted code and check for any mistakes. You should look for the following, and be extremely vigilant:\n- Syntax errors\n- Logic errors\n- Security vulnerabilities\n- Performance issues\n- Anything else that looks wrong\n\nOnce you find an error, please explain it as clearly as possible, but without using extra words. For example, instead of saying 'I think there is a syntax error on line 5', you should say 'Syntax error on line 5'. Give your answer as one bullet point per mistake found."
+}]
+```
+사용자 지정 명령은 프롬프트를 자주 재사용할 때 유용합니다.
+
+
+#### [Custom Slash Commands(config.ts)](https://docs.continue.dev/actions/how-to-customize#other-custom-actions)
+
+
+customCommands로 사용자 지정 명령을 작성하는 것보다 한 단계 더 나아가려면 응답을 반환하는 사용자 지정 함수를 작성할 수 있습니다.
+
+이를 위해서는 config.json 대신 config.ts를 사용해야 하는데, 이곳에서 slashCommands 배열에 새로운 slashCommand 객체를 slashCommands 배열에 추가합니다.
+
 
 **slashCommand 객체에 필요한 항목**
 
-- name: 슬래시 명령을 호출하는 데 입력할 이름
-- description: 드롭다운 메뉴에 표시되는 설명
-- run: UI로 스트리밍되도록 원하는 대로 문자열을 생성해야 하는 모든 비동기 생성기. 함수에 대한 인수로 ContinueSDKIDE 내의 특정 정보/작업, 현재 언어 모델 및 몇 가지 다른 유틸리티에 대한 액세스와 같은 유틸리티가 있는 객체에 액세스할 수 있습니다.
+- `name` : 슬래시 명령을 호출하는 데 입력할 이름
+- `description` : 드롭다운 메뉴에 표시되는 설명
 
-예를 들어 커밋 메시지를 생성하는 /commit 슬래시 명령어에 대한 config.ts 설정은 다음과 같습니다.
+다음 예시를 보면 알 수 있듯이, 코드를 기반으로 한 명령을 정의하고 실행합니다. TS/JS 코드로 함수를 작성하고, 특정 명령어(name)가 입력되면 해당 함수가 실행되도록 설정할 수 있습니다.
 
 ```javascript
 export function modifyConfig(config: Config): Config {
@@ -298,95 +348,4 @@ export function modifyConfig(config: Config): Config {
   return config;
 }
 ```
-
-## 3. 커스텀 슬래시 명령어 예시
-
-```text
-<system>
-Your primary role in this interaction is to act as a coding expert who provides concise, insightful, and helpful code reviews. You should carefully review the code provided by the user and highlight areas for improvement, suggest best practices, point out any bugs or inefficiencies, and give constructive feedback.
-</system>
-
-You will follow the guidelines for giving a great code review outlined below:
-{{{ url "https://google.github.io/eng-practices/review/reviewer/looking-for.html" }}}
-
----
-
-Here is the proposed code changes you will be reviewing:
-{{{ diff }}}
-
----
-Do not include a greeting. Immediately begin reviewing the changes.
-For each file, decide if you need to provide any feedback on the changes.
-If so, outline the feedback using one or two sentences.
-If a code change is required, then mention the original code, and
-then propose a code change to fix it.
-Do not add any other text after the suggestion.
-If you have no feedback on a file, do not add a comment for that file.
-Lastly, provide a one to two summary of your feedback at the end.
-
-Here are some examples.
-
-<example>
-filename.js
-The name of this variable is unclear.
-
-Original:
-const x = getAllUsers();
-
-
-Suggestion:
-const allUsers = getAllUsers();
-
-</example>
-
-<example>
-filename.js
-This code is overly complex.
-
-Original:
-class AgeCalculator:
-    def __init__(self, birth_year):
-        self.birth_year = birth_year
-
-    def calculate_age(self, current_year):
-        age = current_year - self.birth_year
-        return self._validate_and_format_age(age)
-
-    def _validate_and_format_age(self, age):
-        if age < 0:
-            raise ValueError("Invalid age calculated")
-        return f"User is {age} years old"
-
-def get_user_age(birth_year, current_year):
-    calculator = AgeCalculator(birth_year)
-    return calculator.calculate_age(current_year)
-
-Suggestion:
-def get_user_age(birth_year, current_year):
-    return current_year - birth_year
-
-</example>
-
-<example>
-
-// Summary
-
-Overall, these changes appear to be minor improvements to the
-project structure and code cleanliness.
-
-</example>
-
-
-Here is the additional input from the code author:
-
-<input>
-{{ input }}
-</input>
-
-
-Think through your feedback step by step before replying.
-```
-
-위 파일에서는 역할 부여, 지시/요구사항에 대한 명확한 가이드라인 제시, 그리고 가이드라인에 대한 예시를 .prompt 파일 내에 담고 있습니다.
-
-[continuedev/prompt-file-examples < 더 많은 prompt sample](https://github.com/continuedev/prompt-file-examples/blob/main/code-review.prompt)
+// 여기서 **run**은 비동기 제너레이터로, 명령어 실행 중 실시간으로 여러 개의 결과를 스트림 형태로 UI에 전달할 수 있으며, ContinueSDK에 접근할 수 있는 확장된 기능을 제공합니다.

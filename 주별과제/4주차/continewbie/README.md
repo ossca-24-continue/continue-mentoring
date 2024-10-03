@@ -4,23 +4,28 @@
 
 ## 📚 목차
 
-1. [서론](#서론)
-
-2. [Continue 모델 유형에 대한 조사](#continue-모델-유형에-대한-조사)
-
-   - [Autocomplete model](#autocomplete-model)
-   - [Chat model](#chat-model)
-   - [Embeddings model](#embeddings-model)
-   - [Reranking model](#reranking-model)
-
-3. [Continue 모델 연동 유형에 대한 조사](#continue-모델-연동-유형에-대한-조사)
-
-   - [AI 모델 제공 및 개발 플랫폼](#ai-모델-제공-및-개발-플랫폼)
-   - [클라우드 AI 서비스](#클라우드-ai-서비스)
-   - [AI 모델 배포 및 관리 도구](#ai-모델-배포-및-관리-도구)
-   - [로컬 AI 실행 도구](#로컬-ai-실행-도구)
-   - [AI 워크플로우 및 통합 도구](#ai-워크플로우-및-통합-도구)
-   - [특화된 AI 서비스](#특화된-ai-서비스)
+- [💻 AI 코딩 어시스턴트 도구 조사 프로젝트](#-ai-코딩-어시스턴트-도구-조사-프로젝트)
+    - [Continue에서 사용하는 Model 유형, Model 연동 유형](#continue에서-사용하는-model-유형-model-연동-유형)
+  - [📚 목차](#-목차)
+  - [서론](#서론)
+  - [Continue 모델 유형에 대한 조사](#continue-모델-유형에-대한-조사)
+    - [Autocomplete model](#autocomplete-model)
+    - [Chat model](#chat-model)
+    - [Embeddings model](#embeddings-model)
+    - [Reranking model](#reranking-model)
+  - [Continue 모델 연동 유형에 대한 조사](#continue-모델-연동-유형에-대한-조사)
+    - [AI 모델 제공 및 개발 플랫폼](#ai-모델-제공-및-개발-플랫폼)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법)
+    - [클라우드 AI 서비스](#클라우드-ai-서비스)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-1)
+    - [AI 모델 배포 및 관리 도구](#ai-모델-배포-및-관리-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-2)
+    - [로컬 AI 실행 도구](#로컬-ai-실행-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-3)
+    - [AI 워크플로우 및 통합 도구](#ai-워크플로우-및-통합-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-4)
+    - [특화된 AI 서비스](#특화된-ai-서비스)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-5)
 
 ---
 
@@ -33,13 +38,21 @@
 Continue는 다양한 AI 작업을 수행하기 위해 여러 유형의 모델을 사용합니다. 각 모델 유형은 특정 기능을 담당하며, 이를 통해 개발자에게 종합적인 AI 지원을 제공합니다. Continue에서는 모델 유형을 크게 네 가지로 분류하고 있습니다.
 
 ### Autocomplete model
+사용자가 텍스트를 입력하는 중간에 다음에 올 단어나 구문을 예측하여 자동으로 완성하는 모델로서 주로 사용자 입력을 더 빠르게 도와주고 편리하게 만드는 데 사용
 
+예시: Google 검색창에서 "best restaurant in..."을 입력하면 "New York", "Los Angeles" 등의 문구를 자동으로 추천해주는 기능, 혹은 개발자 코드의 일부를 작성하면 코드 편집기가 함수 이름이나 변수명을 자동으로 추천하는 기능
 ### Chat model
+텍스트, 이미지, 음성 등을 고차원의 벡터로 변환하여 의미적 유사성을 계산할 수 있도록 하는 모델
 
+예시: Spotify에서 사용자에게 추천 곡을 제공할 때, 사용자가 들었던 곡들을 임베딩하여 의미적으로 유사한 음악들을 추천
 ### Embeddings model
+사용자와 대화하는 모델로, 자연어 처리(NLP) 기술을 통해 질문에 답하거나 정보를 제공하는 역할, 사용자가 제시한 질의에 따라 적절한 응답을 생성
 
+예시: 챗봇, AI비서
 ### Reranking model
+초기 검색 결과를 사용자의 의도에 맞게 재정렬하여 가장 관련성이 높은 결과를 상위에 노출하는 모델
 
+예시: 추천시스템
 ## Continue 모델 연동 유형에 대한 조사
 
 Continue에서 Model Provider는 AI 모델을 제공하는 서비스나 플랫폼을 의미합니다. 사용자는 Provider를 설정하여 모델과 연동할 플랫폼을 선택하고, 각 Provider가 제공하는 AI 모델을 선택할 수 있습니다.
@@ -92,4 +105,37 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
 
 Gemini, Groq, IPEX-LLM, ReplicateLLM이 여기에 속합니다.
 
+- **Gemini**: 멀티모달 모델로서 가장 성공적인 모델
+- **Groq**: 자체 Processor를 통해 LLM을 더 빠르고 효율적으로 사용(추론)할 수 있음
+- **IPEX LLM**: Intel CPU/GPU에서 더 효율적으로 추론과 학습을 할 수 있도록 하는 Pytorch 기반 라이브러리
+- **Replicate**: LLM의 허브같은 곳, 다양한 사용자들이 만들거나 fine tuning한 모델(혹은 자신의 모델)을 올려서 사용할 수 있는 곳
+
 #### 예시 Provider 연동 방법
+**IPEX LLM** 예시
+https://github.com/intel-analytics/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_quickstart.md 사이트에서 Ollama 모델을 IPEX 위에서 작동할 수 있도록 설정한 후 config.json 파일에 입력한다.
+```json
+{
+  "models": [
+    {
+      "title": "IPEX-LLM",
+      "provider": "ollama",
+      "model": "AUTODETECT"
+    }
+  ]
+}
+```
+**Replicate 예시**
+
+https://replicate.com/collections/streaming-language-models 사이트에서 원하는 모델을 선택하여 API Key를 생성하고 이를 config.json에 입력함
+```json
+{
+  "models": [
+    {
+      "title": "Replicate CodeLLama",
+      "provider": "replicate",
+      "model": "codellama-13b",
+      "apiKey": "YOUR_API_KEY"
+    }
+  ]
+}
+```

@@ -50,7 +50,7 @@ Continue에서 Model Provider는 AI 모델을 제공하는 서비스나 플랫�
 
 자체 AI 모델을 개발하고 API를 통해 제공하는 기업들입니다. 해당 유형의 Provider들은 자신들이 개발한 모델에 대한 API를 제공합니다.
 
-Anthropic, OpenAI, Mistral, Cohere, DeepSeek, Gemini가 여기에 속합니다.
+Anthropic, OpenAI, Mistral, Cohere, DeepSeek가 여기에 속합니다.
 
 #### 예시 Provider 연동 방법
 
@@ -90,6 +90,6 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
 
 특정 분야나 기술에 특화된 AI 서비스입니다. 이들은 멀티모달 AI, 고성능 추론, 하드웨어 최적화 등 특정 니즈를 충족시키는 솔루션을 제공합니다.
 
-Groq, IPEX-LLM, ReplicateLLM이 여기에 속합니다.
+Gemini, Groq, IPEX-LLM, ReplicateLLM이 여기에 속합니다.
 
 #### 예시 Provider 연동 방법

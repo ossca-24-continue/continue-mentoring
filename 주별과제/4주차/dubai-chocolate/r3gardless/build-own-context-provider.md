@@ -159,8 +159,6 @@ export function modifyConfig(config: Config): Config {
 
 `~/.continue` 디렉토리에서 `npm install <module_name>` 을 하면 `config.ts` 로 가져올 수 있습니다.
 
-
-
 ## `CustomContextProvider` Reference
 
 - `title`: 컨텍스트 제공자를 식별하는 제목
@@ -174,3 +172,124 @@ export function modifyConfig(config: Config): Config {
     - `extras.llm`: 현재 기본 LLM입니다. 이 함수를 사용하여 완료 요청을 할 수 있습니다.
     - `extras.ide`: IDE 클래스의 인스턴스로, 터미널의 내용, 열린 파일 목록 또는 현재 열린 파일의 경고 등 IDE에서 다양한 정보를 수집할 수 있습니다.
 - `loadSubmenuItems` (optional): submenu 에 표시할 `ContextSubmenuItems` 목록을 반환하는 함수입니다. `getContextItems` 에 전달되는 `IDE` 와 동일한 `IDE` 에 액세스할 수 있습니다.
+
+## Practice (Food-Review Context Provider!)
+
+아래 아키텍쳐를 구성하여 실습을 진행하였습니다.
+
+데이터 : [fine_food_reviews_1k](https://github.com/openai/openai-cookbook/blob/main/examples/data/fine_food_reviews_1k.csv)
+
+
+![architecture](./assets/architecture.png "architecture")
+
+### Query Type
+
+```typescript
+// ~/.continue/config.ts
+const FoodReviewContextProvider: CustomContextProvider = {
+  title: "food-review",
+  displayTitle: "food-review",
+  description: "Food Review Context Providers",
+  type: "query", // query 옵션 추가
+  
+  getContextItems: async (
+      query: string,
+      extras: ContextProviderExtras,
+  ): Promise<ContextItem[]> => {
+      const response = await fetch("http://localhost:8000/retrieve", {
+          method: "POST",
+          headers : {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query })
+      });
+      
+      const results = await response.json();
+
+      return results.map((result) => ({
+          name: result.name,
+          description: result.description,
+          content: result.content
+      }))
+  },
+
+}
+
+
+export function modifyConfig(config: Config): Config {
+  if (!config.contextProviders) {
+      config.contextProviders = [];
+  }
+  config.contextProviders.push(FoodReviewContextProvider);
+  return config;
+}
+```
+
+#### 결과
+
+![context-provider-query](./assets/context-provider-query.png "context-provider-query")
+
+
+![context-provider-query-result](./assets/context-provider-query-result.png "context-provider-query-result")
+
+### Submenu Type
+
+```typescript
+const FoodReviewContextProvider: CustomContextProvider = {
+  title: "food-review",
+  displayTitle: "food-review",
+  description: "Food Review Context Providers",
+  type: "submenu", // submenu 옵션 추가
+  
+  getContextItems: async (
+      query: string,
+      extras: ContextProviderExtras,
+  ): Promise<ContextItem[]> => {
+      const response = await fetch("http://localhost:8000/retrieve", {
+          method: "POST",
+          headers : {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query })
+      });
+      
+      const results = await response.json();
+
+      return results.map((result) => ({
+          name: result.name,
+          description: result.description,
+          content: result.content
+      }))
+  },
+
+  loadSubmenuItems: async (
+      args: LoadSubmenuItemsArgs,
+  ): Promise<ContextSubmenuItem[]> => {
+      const list = ["coffee", "steak", "burger"];
+      const result = list.map((item) => {
+          return {
+              id: item,
+              title: item,
+              description: `description of ${item}`,
+          };   
+      });
+      console.log(result);
+      return result
+  },
+}
+
+export function modifyConfig(config: Config): Config {
+  if (!config.contextProviders) {
+      config.contextProviders = [];
+  }
+  config.contextProviders.push(FoodReviewContextProvider);
+  return config;
+}
+```
+
+#### 결과
+
+![context-provider-submenu](./assets/context-provider-submenu.png "context-provider-submenu")
+
+
+![context-provider-submenu-result](./assets/context-provider-submenu-result.png "context-provider-submenu-result")

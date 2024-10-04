@@ -130,7 +130,7 @@ Cloudflare Workers AI, HuggingFace Inference Endpoints, DeepInfra, Together, vLL
 
 Ollama, LlamaCpp, Llamafile, LM Studio, TextGenWebUI이 여기에 속합니다.
 
-1. Ollama (https://ollama.com/)
+#### 1. Ollama (https://ollama.com/)
    
 Ollama는 로컬 환경에서 LLM을 쉽게 실행할 수 있는 도구로, 주로 GPT 계열 모델을 로컬에서 실행할 수 있습니다. 클라우드 의존성 없이 AI 모델을 로컬에서 처리하므로, 민감한 데이터를 보호하고 클라우드 저장소에 의존하지 않아도 되는 것이 주요 장점입니다.
 또한 다양한 LLM을 지원합니다. (Llama 3, Mistral, CodeLlama, Orca Mini 등)
@@ -141,7 +141,7 @@ Ollama를 공식 웹사이트에서 다운로드하여 설치 후,
 Continue의 config.json 파일에서 Ollama를Providers로 설정합니다.
 
 
-2. LlamaCpp (https://github.com/ggerganov/llama.cpp)
+#### 2. LlamaCpp (https://github.com/ggerganov/llama.cpp)
    
 LlamaCpp는 Meta의 LLaMA 모델을 C++ 기반으로 로컬에서 실행할 수 있는 도구입니다. 주로 CPU 성능을 극대화하여 고성능 LLM 추론을 지원하며, GPU 없이도 실행이 가능합니다. 특히 저사양 환경에서도 효율적으로 LLM을 로컬에서 사용할 수 있도록 설계되었습니다.
 
@@ -150,7 +150,7 @@ GitHub 리포지토리에서 LlamaCpp를 다운로드 하여 설치 후,
 LlamaCpp 서버 바이너리를 실행하여 API 서버를 설정하고
 config.json 파일에서 LlamaCpp Providers로 설정합니다.
 
-3. Llamafile (https://github.com/Mozilla-Ocho/llamafile)
+#### 3. Llamafile (https://github.com/Mozilla-Ocho/llamafile)
    
 Llamafile은 복잡한 서버 설정이 필요 없고히 llama.cpp와 Cosmopolitan Libc의 결합을 통해 다양한 환경에서 실행 가능한 단일 빌드로 모든 기능을 패키징 하므로 복잡한 설정 없이 로컬에서 쉽게 실행할 수 있습니다. 주로 로컬 배포에 용이하게 설계되어 간편한 실행을 지원합니다.
 
@@ -158,7 +158,7 @@ Llamafile은 복잡한 서버 설정이 필요 없고히 llama.cpp와 Cosmopolit
 LLM을 Llamafile 형식으로 패키징하여 저장한 후, 
 config.json 파일에서 Llamafile Providers를 설정합니다.
 
-4. LM Studio (https://lmstudio.ai/)
+#### 4. LM Studio (https://lmstudio.ai/)
    
 LM Studio ggml 포맷을 지원하는 Llama, MPT, StarCoder 모델 어떤 것이든 호환이 가능합니다. 호환되는 모델 파일을 검색, 다운로드가 가능하고 여러개의 로컬 LLM을 동시에 로딩해 사용할 수 있습니다. 로컬 호스트에서 OpenAI와 유사한 HTTP 서버를 구동할 수 있습니다. 
 
@@ -167,7 +167,7 @@ LM Studio 공식 사이트에서 다운로드해 설치한 후,
 LM Studio에서 원하는 모델을 다운로드하고 로컬에서 실행
 config.json 파일에서 LM Studio Providers를 설정합니다.
 
-5. Msty (https://msty.app/)
+#### 5. Msty (https://msty.app/)
    
 Msty는 Groq, Cluaude와 같은 온라인 언어 모델과 Ollama 로컬 언어 모델을 모두 지원하는 언어 모델 도구로 대화창 분할, 그룹 동시 채팅, 프롬프트 라이브러리 등 다양한 기능을 미니멀한 UI를 통해 제공합니다. 
 
@@ -175,7 +175,7 @@ Msty는 Groq, Cluaude와 같은 온라인 언어 모델과 Ollama 로컬 언어 
 Msty 앱을 통해 모델을 실행한 후, 
 config.json 파일에서 Msty를 Providers를 설정합니다.
 
-6. TextGenWebUI (https://github.com/oobabooga/text-generation-webui)
+#### 6. TextGenWebUI (https://github.com/oobabooga/text-generation-webui)
 
 TextGenWebUI는 Gradio 기반 웹 인터페이스로 다양한 텍스트 생성 모델과 파라미터를 쉽게 선택하여 원하는 텍스트를 만들 수 있습니다. Conda 환경 구성, 소스코드 다운로드, 설치 및 실행, web ui실행, 모델 다운로드 순의 진행을 통해 사용 가능합니다. 
 

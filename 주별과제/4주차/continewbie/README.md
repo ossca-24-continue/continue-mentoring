@@ -136,13 +136,20 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
 
 #### 예시 Provider 연동 방법
 
+Flowise 란? https://flowiseai.com/
+<img width="1114" alt="스크린샷 2024-10-04 오후 9 26 47" src="https://github.com/user-attachments/assets/85c32e40-cfbb-4feb-a1ed-08a55beb8d34">
+
+드래그 앤 드롭만으로, 에이전트 AI를 만들수 있는 툴 입니다.
+
 1. https://github.com/FlowiseAI/Flowise 에서 Flowise를 clone 한다.
 <img width="1329" alt="스크린샷 2024-10-04 오후 8 37 21" src="https://github.com/user-attachments/assets/83e5db82-d7a9-4fc9-830d-5732876bcbb7">
 
 2. 클론 후, 해당 flowise README.md 에서 나온대로 따라해서 docker로 실행시키고 localhost:3000 으로 접속후, chatflow로 가서 나만의 chatflow를 설정할 수있다.
+   
 <img width="1087" alt="스크린샷 2024-10-04 오후 8 39 15" src="https://github.com/user-attachments/assets/704e5e05-768e-4f6e-ac8f-9270f08f5b41">
 
 3. 우상단 </> 를 누르면, curl 의 url로 api를 이용 할 수있다.
+
    <img width="1390" alt="image" src="https://github.com/user-attachments/assets/08ba1c69-2c98-4e2a-b312-f7c6dbb09184">
 
 4. 하단의 configure continue 를 누르고, config.json에
@@ -157,20 +164,34 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
      ]
 ```
 를 등록하면 연결이 된다.
-   
-   <img width="975" alt="image" src="https://github.com/user-attachments/assets/bf8b3b15-d0da-4f5e-a1dd-e800da07c005">
-   
-   
-   
-   장점 : Flowise는 AI 워크플로우를 드래그 앤 드롭 방식으로 설계할 수 있는 시각적 인터페이스를 제공합니다.  
-   이를 통해 개발자는 복잡한 워크플로우나 모델 간의 데이터 흐름을 쉽게 관리하고 설계할 수 있습니다.  
-   Continue는 협업을 강조하는 플랫폼인데, Flowise와 연결하면 팀원들이 각 워크플로우의 시각적인 구성을 손쉽게 이해하고 수정할 수 있습니다.
+
+<img width="975" alt="image" src="https://github.com/user-attachments/assets/bf8b3b15-d0da-4f5e-a1dd-e800da07c005">
+
+
+
+장점 : Flowise는 AI 워크플로우를 드래그 앤 드롭 방식으로 설계할 수 있는 시각적 인터페이스를 제공합니다.  
+이를 통해 개발자는 복잡한 워크플로우나 모델 간의 데이터 흐름을 쉽게 관리하고 설계할 수 있습니다.  
+Continue는 협업을 강조하는 플랫폼인데, Flowise와 연결하면 팀원들이 각 워크플로우의 시각적인 구성을 손쉽게 이해하고 수정할 수 있습니다.
 
 참조 : (flowise api 등록) https://docs.continue.dev/customize/model-providers/more/flowise  
       (flowise api 튜토리얼) https://www.youtube.com/watch?v=9R5zo3IVkqU&t=305s  
       (flowise git hub) https://github.com/FlowiseAI/Flowise  
-      
 
+
+Kindo 설정 동일
+
+```
+  "models": [
+    {
+      "title": "Claude 3.5 Sonnet", // 모델 이름
+      "provider": "kindo",          // 제공자
+      "model": "claude-3-5-sonnet-20240620", // 사용하려는 모델
+      "apiKey": "<KINDO_API_KEY>"   // Kindo에서 발급받은 API 키
+    }
+  ]
+```
+ Msty, OpenRouter도 비슷하다 https://docs.continue.dev/customize/model-providers/more  
+ 공식문서 ModelProvider -> more 에서 참고
 
 
 ### 특화된 AI 서비스

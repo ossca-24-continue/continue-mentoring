@@ -304,39 +304,13 @@ Continue 문서에서 추천하는 7개 모델과 직접 조사했을 때 같이
 
 - **벤치마크 결과**
     - 8개 모델의 벤치마크를 직접 확인할 수 있는 방법을 찾지 못해서 GPT와 Claude에게 결과를 산출해달라고 요청했다.
-    - GPT-4
-    
-    | 모델 | CodeXGLUE |  | HumanEval | MBPP |  | CodeSearchNet |  | 기타 참고 사항 |
-    | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    | 지표 | accuracy | F1 스코어 | pass@k | accuracy | pass@k | MRR | Precision@k |  |
-    | Voyage AI의 voyage-code-2 | 92% | 90% | 85% | 75% | 80% | 70% | 75% | 코드 관련 작업에서 강력한 성능을 보임 |
-    | Ollama의 nomic-embed-text | 80% | 75% | 70% | 60% | 65% | 85% | 70% | 코드와 자연어 검색 작업에 적합 |
-    | Transformers.js의 all-MiniLM-L6-v2 | 75% | 70% | 65% | 65% | 60% | 70% | 65% | 소형 모델로 경량화된 환경에서 성능 발휘 |
-    | Text Embeddings Inference | 90% | 85% | 75% | 70% | 72% | 80% | 80% | 검색과 코드 매핑 작업에서 우수한 성능 |
-    | OpenAI의 text-embedding-3-large | 95% | 93% | 90% | 90% | 88% | 95% | 92% | 다목적 임베딩 모델로, 다양한 작업에서 강력 |
-    | Cohere의 embed-english-v3.0 | 70% | 68% | 65% | 60% | 55% | 75% | 70% | 영어 기반 코드 생성과 검색에서 안정적 성능 |
-    | Gemini의 models/text-embedding-004 | 88% | 82% | 72% | 80% | 78% | 85% | 80% | 다양한 언어와 코드 검색 작업에 강점 |
-    | Upstage의 solar-embedding-1-large-query | 78% | 74% | 70% | 68% | 66% | 80% | 76% | 한국어 코드 관련 작업에서 특히 우수 |
-    - Claude
-    
-    | 모델 | CodeXGLUE |  | HumanEval |  | MBPP |  | CodeSearchNet |  | 주요 특징 |
-    | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-    | 지표 | accuracy | F1 score | pass@1 | pass@100 | accuracy | pass@k | MRR | Precision@10 |  |
-    | Voyage AI의 voyage-code-2 | 88% | 86% | 45% | 72% | 70% | 75% | 0.68 | 72% | 코드 특화 임베딩으로 우수한 성능 |
-    | Ollama의 nomic-embed-text | 82% | 79% | 38% | 65% | 65% | 68% | 0.72 | 68% | 오픈소스로 유연한 활용 가능 |
-    | Transformers.js의 all-MiniLM-L6-v2 | 78% | 75% | 35% | 60% | 62% | 65% | 0.65 | 64% | 경량화 모델로 빠른 처리 속도 |
-    | Text Embeddings Inference | 85% | 82% | 42% | 70% | 68% | 72% | 0.70 | 70% | 높은 정확도와 빠른 추론 속도 |
-    | OpenAI의 text-embedding-3-large | 92% | 90% | 48% | 78% | 75% | 80% | 0.75 | 78% | 전반적으로 최고 수준의 성능 |
-    | Cohere의 embed-english-v3.0 | 84% | 81% | 40% | 68% | 66% | 70% | 0.69 | 69% | 영어 텍스트에 최적화 |
-    | Gemini의 models/text-embedding-004 | 90% | 87% | 46% | 75% | 72% | 77% | 0.73 | 75% | 멀티모달 지원으로 확장성 높음 |
-    | Upstage의 solar-embedding-1-large-query | 86% | 83% | 41% | 69% | 67% | 71% | 0.71 | 71% | 한국어 코드 관련 작업에 강점 |
+    - [벤치마크 결과 확인 | [Continue] 임베딩 모델 선택가이드](https://velog.io/@sjmh0507/Continue-%EC%9E%84%EB%B2%A0%EB%94%A9-%EB%AA%A8%EB%8D%B8-%EC%84%A0%ED%83%9D%EA%B0%80%EC%9D%B4%EB%93%9C#3-1-3-%EB%B2%A4%EC%B9%98%EB%A7%88%ED%81%AC-%EA%B2%B0%EA%B3%BC1)
 - **선택 가이드**
-    - 전반적으로 OepnAI의 text-embedding-3-large이 코딩 능력이 좋다.
+    - 전반적으로 OpenAI의 text-embedding-3-large가 코딩 능력이 좋다.
     - Gemini models/text-embedding-004도 코딩 능력이 좋고 멀티모달을 지원하는 특성이 있다.
     - 하지만, 위 2개 모델은 비용이 많이 들고 API 의존성이 높다. 따라서 대규모 엔터프라이즈 개발에서는 위 2개 모델을 사용할 수 있을 것이다.
-    - Voyage AI의 voyage-code-2도 성능이 상위권이었다. 하지만 비용은 OpenAI나 Gemini 보다 적게 들어서 규모가 작은 개발에 적합하다.
-    - Text Embeddings Inference도 성능이 상위권이었다. 개별 서버에서 TEI 서비스를 호스팅하고 있을 때 적합하다.
-    - 교육/학습 환경에서는 경량화된 Transformers.js나 오픈소스로 비용 효율적인 Ollama가 적합하다.
+    - Voyage AI의 voyage-code-2도 성능이 상위권이다. 하지만 비용은 OpenAI나 Gemini 보다 적게 들어서 규모가 작은 개발에 적합해 보인다.
+    - Text Embeddings Inference도 성능이 상위권이다. 개별 서버에서 TEI 서비스를 호스팅하고 있을 때 적합하다.
 
 **3-2. 모델 크기**
 

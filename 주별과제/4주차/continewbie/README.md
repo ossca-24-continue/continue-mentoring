@@ -146,7 +146,8 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
    <img width="1390" alt="image" src="https://github.com/user-attachments/assets/08ba1c69-2c98-4e2a-b312-f7c6dbb09184">
 
 4. 하단의 configure continue 를 누르고, config.json에
-"models": [
+```
+   "models": [
        {
          "provider": "flowise",
          "title": "Flowise",
@@ -154,19 +155,20 @@ Flowise, Kindo, Msty, OpenRouter가 여기에 속합니다.
          "apiBase": "<API_BASE>"
        }
      ]
-   를 등록하면 연결이 된다.
+```
+를 등록하면 연결이 된다.
    
    <img width="975" alt="image" src="https://github.com/user-attachments/assets/bf8b3b15-d0da-4f5e-a1dd-e800da07c005">
    
    
    
-   장점 : Flowise는 AI 워크플로우를 드래그 앤 드롭 방식으로 설계할 수 있는 시각적 인터페이스를 제공합니다.
-   이를 통해 개발자는 복잡한 워크플로우나 모델 간의 데이터 흐름을 쉽게 관리하고 설계할 수 있습니다.
+   장점 : Flowise는 AI 워크플로우를 드래그 앤 드롭 방식으로 설계할 수 있는 시각적 인터페이스를 제공합니다.  
+   이를 통해 개발자는 복잡한 워크플로우나 모델 간의 데이터 흐름을 쉽게 관리하고 설계할 수 있습니다.  
    Continue는 협업을 강조하는 플랫폼인데, Flowise와 연결하면 팀원들이 각 워크플로우의 시각적인 구성을 손쉽게 이해하고 수정할 수 있습니다.
 
-참조 : (flowise api 등록) https://docs.continue.dev/customize/model-providers/more/flowise
-      (flowise api 튜토리얼) https://www.youtube.com/watch?v=9R5zo3IVkqU&t=305s
-      (flowise git hub) https://github.com/FlowiseAI/Flowise
+참조 : (flowise api 등록) https://docs.continue.dev/customize/model-providers/more/flowise  
+      (flowise api 튜토리얼) https://www.youtube.com/watch?v=9R5zo3IVkqU&t=305s  
+      (flowise git hub) https://github.com/FlowiseAI/Flowise  
       
 
 

@@ -141,19 +141,6 @@ Anthropic은 미국의 인공지능 회사로 OpenAI 퇴사자가 설립한 회�
 모델은 3가지로 Haiku는 가볍고 빠르게 사용하기 위한 모델, Sonnet은 성능과 속도의 적절한 수준의 모델, Opus는 성능이 가장 우수한 모델로 어려운 수학과 프로그래밍에 사용하는 모델이 있다.  
 Continue에 적용 시 api키를 발급받아 사용해야 하며 과금 체계에 따라 과금된다. (과금 정보 : https://www.anthropic.com/pricing#anthropic-api)  
   
-3. Azure OpenAI (https://azure.microsoft.com/ko-kr)   
-  
-Azure는 Microsoft사의 Public Cloud 서비스를 제공하는 CSP사이다. 여러 AI 모델 공급사로부터 모델을 공급받아 서비스를 하는 형태이다.  
-Continue에서는 채팅 모델로 'GPT-4o' 모델을 추천하며 자동완성 모델로 'Codestral', 임베딩에는 'text-embedding-3-large' 모델 사용을 추천한다.   
-Azure OpenAI에서 re-Ranking 모델은 제공하지 않는다. 사용을 위해서는 api key를 발급받아 적용해야 사용이 가능하며 과금 체계에 따라 과금 된다.   
-(과금 정보 : https://azure.microsoft.com/ko-kr/pricing/details/cognitive-services/openai-service/#pricing)  
-  
-4. Amazon Bedrock (https://aws.amazon.com/ko/bedrock/?gclid=Cj0KCQjwmOm3BhC8ARIsAOSbapXJzJtKJf-adSQvzrKZ32ICT4sj4d8cLZGrvUvXJD6VpAV5i8Zy1ZIaAreUEALw_wcB&trk=24a8f13a-f5db-4127-bcb7-8b2876aa4265&sc_channel=ps&ef_id=Cj0KCQjwmOm3BhC8ARIsAOSbapXJzJtKJf-adSQvzrKZ32ICT4sj4d8cLZGrvUvXJD6VpAV5i8Zy1ZIaAreUEALw_wcB:G:s&s_kwcid=AL!4422!3!692062155749!e!!g!!amazon%20bedrock!21058131112!157173586057)  
-  
-AWS는 Azure와 같이 amazon사의 Public Cloud 서비스를 제공하는 곳이며 Amazon Bedrock(아마존 베드록)은 AWS 환경에서 LLM을 개발하고 배포할 수 있는 플랫폼이다.   
-Continue에서는 채팅 모델로 'Claude 3.5 Sonnet' 모델을 추천하며 임베딩에는 'amazon.titan-embed-text-v2:0' 모델 사용을 추천한다.   
-Amazon Bedrock에서 자동완성, re-Ranking 모델은 제공하지 않으며 사용자가 정의한 모델을 사용할 경우에는 'config.json' 파일에 모델을 지정해야 한다.  
-  
 5. Deepseek(딥시크) (https://www.deepseek.com/)   
 딥시크는 중국의 스타트업이다. Continue에서는 채팅 모델로 'deepSeek-chat', 자동완성 모델에는 'deepseek-coder' 사용을 추천하며 임베딩, re-Ranking 모델은 제공하지 않는다.  
 api key 사용을 위해서는 키를 발급 받아 적용해야 하고 과금 체계에 따라 과금된다.  
@@ -175,13 +162,63 @@ re-Rankig 모델은 제공하지 않는다. 사용하기 위해서는 apikey 발
 
 #### 예시 Provider 연동 방법
 
+1. 먼저, 사용하고자 하는 클라우드 AI 의 API 키를 얻는다.
+   
+   `Mistral` 의 경우,  [Mistral Dashboard](https://console.mistral.ai/)에서 얻을 수 있다.
+
+2. continue 의 `Add chat model`을 통해서 provider 와 모델를 선택 후, API 키를 입력한다.  
+
+   혹은, config.json 에 직접 추가할 수도 있다. 
+
+
+`config.json` 예시
+```
+{
+  "models": [
+    {
+      "title": "Mistral Large",
+      "provider": "mistral",
+      "model": "mistral-large-latest",
+      "apiKey": "[API_KEY]"
+    }
+  ]
+}
+```
+예를 들어, Mistral 에서 제공하는 모델을 Chat 모델로 사용하고 싶은 경우 위와 같이 config.json 을 작성할 수 있다.
+
 ### 클라우드 AI 서비스
 
 대규모 클라우드 제공업체가 제공하는 AI 및 머신러닝 서비스입니다. 모델 훈련, 배포, 관리를 위한 종합적인 플랫폼을 제공해 주는 서비스들입니다.
 
-Azure OpenAI, Amazon Bedrock, AWS SageMaker, IBM Watsonx, SambaNova Cloud가 여기에 속합니다.
+Azure OpenAI, Amazon Bedrock, AWS SageMaker, IBM Watsonx, SambaNova Cloud가 여기에 속합니다. 대표적인 두 플랫폼에 대해 설명하자면 다음과 같습니다.
 
-#### 예시 Provider 연동 방법
+- Azure OpenAI (https://azure.microsoft.com/ko-kr)   
+  
+Azure는 Microsoft사의 Public Cloud 서비스를 제공하는 CSP사이다. 여러 AI 모델 공급사로부터 모델을 공급받아 서비스를 하는 형태이다.  
+Continue에서는 채팅 모델로 'GPT-4o' 모델을 추천하며 자동완성 모델로 'Codestral', 임베딩에는 'text-embedding-3-large' 모델 사용을 추천한다.   
+Azure OpenAI에서 re-Ranking 모델은 제공하지 않는다. 사용을 위해서는 api key를 발급받아 적용해야 사용이 가능하며 과금 체계에 따라 과금 된다.   
+(과금 정보 : https://azure.microsoft.com/ko-kr/pricing/details/cognitive-services/openai-service/#pricing)  
+  
+- Amazon Bedrock (https://aws.amazon.com/ko/bedrock/?gclid=Cj0KCQjwmOm3BhC8ARIsAOSbapXJzJtKJf-adSQvzrKZ32ICT4sj4d8cLZGrvUvXJD6VpAV5i8Zy1ZIaAreUEALw_wcB&trk=24a8f13a-f5db-4127-bcb7-8b2876aa4265&sc_channel=ps&ef_id=Cj0KCQjwmOm3BhC8ARIsAOSbapXJzJtKJf-adSQvzrKZ32ICT4sj4d8cLZGrvUvXJD6VpAV5i8Zy1ZIaAreUEALw_wcB:G:s&s_kwcid=AL!4422!3!692062155749!e!!g!!amazon%20bedrock!21058131112!157173586057)  
+  
+AWS는 Azure와 같이 amazon사의 Public Cloud 서비스를 제공하는 곳이며 Amazon Bedrock(아마존 베드록)은 AWS 환경에서 LLM을 개발하고 배포할 수 있는 플랫폼이다.   
+Continue에서는 채팅 모델로 'Claude 3.5 Sonnet' 모델을 추천하며 임베딩에는 'amazon.titan-embed-text-v2:0' 모델 사용을 추천한다.   
+Amazon Bedrock에서 자동완성, re-Ranking 모델은 제공하지 않으며 사용자가 정의한 모델을 사용할 경우에는 'config.json' 파일에 모델을 지정해야 한다.  
+  
+클라우드 AI 제공업체의 모델을 연동하는 방법은 주로 **API 연결**을 통해 이루어집니다. 
+
+#### 클라우드 AI 사용의 장점
+
+클라우드 AI Provider 를 사용할 경우, 물리적인 인프라를 구축할 필요 없이 사용한 만큼만 지불하는 구조(Pay-as-you-go)를 통해 초기 투자 비용을 크게 절감할 수 있습니다.
+
+#### 클라우드 AI 사용의 단점
+
+1. API를 이용해서 데이터를 전송하기 때문에 데이터가 제3자와 공유될 수 있는 위험성이 존재한다.
+
+   다만, OpenAI 엔터프라이즈 고객의 데이터를 사용하여 서비스 개선이나 모델 훈련에 사용하지 않겠다고 명시하는 등 보호 조치가 존재한다.
+
+2. 장기적으로 볼 경우에는 사용량이 증가하면 지속적으로 발생하는 비용이 더 들 수도 있다. 
+
 
 ### AI 모델 배포 및 서버리스 플랫폼
 

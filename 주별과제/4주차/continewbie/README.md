@@ -4,23 +4,28 @@
 
 ## 📚 목차
 
-1. [서론](#서론)
-
-2. [Continue 모델 유형에 대한 조사](#continue-모델-유형에-대한-조사)
-
-   - [Autocomplete model](#autocomplete-model)
-   - [Chat model](#chat-model)
-   - [Embeddings model](#embeddings-model)
-   - [Reranking model](#reranking-model)
-
-3. [Continue 모델 연동 유형에 대한 조사](#continue-모델-연동-유형에-대한-조사)
-
-   - [AI 모델 제공 및 개발 플랫폼](#ai-모델-제공-및-개발-플랫폼)
-   - [클라우드 AI 서비스](#클라우드-ai-서비스)
-   - [AI 모델 배포 및 관리 도구](#ai-모델-배포-및-관리-도구)
-   - [로컬 AI 실행 도구](#로컬-ai-실행-도구)
-   - [AI 워크플로우 및 통합 도구](#ai-워크플로우-및-통합-도구)
-   - [특화된 AI 서비스](#특화된-ai-서비스)
+- [💻 AI 코딩 어시스턴트 도구 조사 프로젝트](#-ai-코딩-어시스턴트-도구-조사-프로젝트)
+    - [Continue에서 사용하는 Model 유형, Model 연동 유형](#continue에서-사용하는-model-유형-model-연동-유형)
+  - [📚 목차](#-목차)
+  - [서론](#서론)
+  - [Continue 모델 유형에 대한 조사](#continue-모델-유형에-대한-조사)
+    - [Autocomplete model](#autocomplete-model)
+    - [Chat model](#chat-model)
+    - [Embeddings model](#embeddings-model)
+    - [Reranking model](#reranking-model)
+  - [Continue 모델 연동 유형에 대한 조사](#continue-모델-연동-유형에-대한-조사)
+    - [AI 모델 제공 및 개발 플랫폼](#ai-모델-제공-및-개발-플랫폼)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법)
+    - [클라우드 AI 서비스](#클라우드-ai-서비스)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-1)
+    - [AI 모델 배포 및 관리 도구](#ai-모델-배포-및-관리-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-2)
+    - [로컬 AI 실행 도구](#로컬-ai-실행-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-3)
+    - [AI 워크플로우 및 통합 도구](#ai-워크플로우-및-통합-도구)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-4)
+    - [특화된 AI 서비스](#특화된-ai-서비스)
+      - [예시 Provider 연동 방법](#예시-provider-연동-방법-5)
 
 ---
 
@@ -40,6 +45,10 @@ Continue는 다양한 AI 작업을 수행하기 위해 여러 유형의 모델�
 
 Continue에서 이러한 자동 완성 모델은 주로 코드 작성 시 실시간으로 인라인 제안을 제공하는 데 활용됩니다.
 
+#### 예시
+
+Google 검색창에서 "best restaurant in..."을 입력하면 "New York", "Los Angeles" 등의 문구를 자동으로 추천해주는 기능, 혹은 개발자 코드의 일부를 작성하면 코드 편집기가 함수 이름이나 변수명을 자동으로 추천하는 기능
+
 #### 추천 모델
 
 Continue에서는 자동 완성 모델로 Mistral의 [Codestral](https://docs.continue.dev/customize/model-providers/mistral) 모델을 추천하며, 로컬 모델로는 [Ollama Provider](https://docs.continue.dev/customize/model-providers/ollama)와 함께 Starcoder2-3B 모델을 사용하는 것을 권장하고 있습니다.
@@ -49,6 +58,10 @@ Continue에서는 자동 완성 모델로 Mistral의 [Codestral](https://docs.co
 #### 개념
 
 채팅 모델(Chat model)은 대화 형식으로 응답하도록 학습된 LLM입니다. 이 모델은 일반적인 질문에 답변하고 복잡한 코드를 생성할 수 있어야 하므로, 최고 성능의 채팅 모델은 보통 405B 이상의 매개변수를 가진 대형 모델입니다. Continue에서는 이러한 채팅 모델을 [Chat](https://docs.continue.dev/chat/how-to-use-it), [Edit](https://docs.continue.dev/edit/how-to-use-it), [Action](https://docs.continue.dev/actions/how-to-use-it) 기능에 사용합니다.
+
+#### 예시
+
+챗봇, AI비서
 
 #### 추천 모델
 
@@ -61,6 +74,10 @@ Continue에서는 자동 완성 모델로 Mistral의 [Codestral](https://docs.co
 임베딩 모델(Embeddings model)은 텍스트를 벡터로 변환하도록 훈련된 모델입니다. 생성된 벡터는 나중에 다른 벡터들과 빠르게 비교하여 텍스트 간의 유사성을 판단하는 데 사용됩니다. 임베딩 모델은 일반적으로 LLM보다 훨씬 작은 모델이며, 따라서 비교적으로 매우 빠르고 저렴합니다.
 
 Continue에서는 인덱싱 과정 중에 임베딩을 생성하고, 이를 [@codebase](https://docs.continue.dev/customize/deep-dives/codebase) 기능에서 활용하여 코드베이스 전체에 대한 유사성 검색을 수행합니다. 이를 통해 Continue는 워크스페이스에서 가장 관련성 있는 컨텍스트를 자동으로 가져올 수 있습니다.
+
+#### 예시
+
+Spotify에서 사용자에게 추천 곡을 제공할 때, 사용자가 들었던 곡들을 임베딩하여 의미적으로 유사한 음악들을 추천
 
 #### 추천 모델
 
@@ -77,6 +94,10 @@ OpenAI, Cohere, Gemini 공급사에서도 임베딩 모델을 제공합니다.
 리랭킹 모델(Reranking model)은 두 개의 텍스트(주로 사용자의 질문과 문서)를 입력받아 0에서 1 사이의 관련성 점수를 반환하도록 훈련된 모델입니다. 이 점수는 해당 문서가 질문에 답변하는 데 얼마나 유용할지를 측정합니다. 리랭킹 모델은 일반적으로 LLM보다 훨씬 작으며, 비교적 매우 빠르고 저렴합니다.
 
 Continue 플랫폼에서는 [@codebase](https://docs.continue.dev/customize/deep-dives/codebase) 기능에서 리랭킹 모델을 사용합니다. 이는 벡터 검색 후 가장 관련성 높은 코드 스니펫을 선택하는 데 필요합니다.
+
+#### 예시
+
+추천시스템
 
 #### 추천 모델
 
@@ -300,4 +321,37 @@ Kindo 설정 동일
 
 Gemini, Groq, IPEX-LLM, ReplicateLLM이 여기에 속합니다.
 
+- **Gemini**: 멀티모달 모델로서 가장 성공적인 모델
+- **Groq**: 자체 Processor를 통해 LLM을 더 빠르고 효율적으로 사용(추론)할 수 있음
+- **IPEX LLM**: Intel CPU/GPU에서 더 효율적으로 추론과 학습을 할 수 있도록 하는 Pytorch 기반 라이브러리
+- **Replicate**: LLM의 허브같은 곳, 다양한 사용자들이 만들거나 fine tuning한 모델(혹은 자신의 모델)을 올려서 사용할 수 있는 곳
+
 #### 예시 Provider 연동 방법
+**IPEX LLM** 예시
+https://github.com/intel-analytics/ipex-llm/blob/main/docs/mddocs/Quickstart/ollama_quickstart.md 사이트에서 Ollama 모델을 IPEX 위에서 작동할 수 있도록 설정한 후 config.json 파일에 입력한다.
+```json
+{
+  "models": [
+    {
+      "title": "IPEX-LLM",
+      "provider": "ollama",
+      "model": "AUTODETECT"
+    }
+  ]
+}
+```
+**Replicate 예시**
+
+https://replicate.com/collections/streaming-language-models 사이트에서 원하는 모델을 선택하여 API Key를 생성하고 이를 config.json에 입력함
+```json
+{
+  "models": [
+    {
+      "title": "Replicate CodeLLama",
+      "provider": "replicate",
+      "model": "codellama-13b",
+      "apiKey": "YOUR_API_KEY"
+    }
+  ]
+}
+```

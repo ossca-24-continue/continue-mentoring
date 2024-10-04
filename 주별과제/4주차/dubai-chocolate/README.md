@@ -214,10 +214,105 @@ export function modifyConfig(config: Config): Config {
 <img src="./r3gardless/assets/architecture.png" width="500" alt="img" /></br>
 
 **1. Query Type**
+
+<details>
+<summary> <code>~/.continue/config.ts</code> </summary>
+
+```Typescript
+const FoodReviewContextProvider: CustomContextProvider = {
+  title: "food-review",
+  displayTitle: "food-review",
+  description: "Food Review Context Providers",
+  type: "query", // query 옵션 추가
+  
+  getContextItems: async (
+      query: string,
+      extras: ContextProviderExtras,
+  ): Promise<ContextItem[]> => {
+      const response = await fetch("http://localhost:8000/retrieve", {
+          method: "POST",
+          headers : {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query })
+      });
+      
+      const results = await response.json();
+
+      return results.map((result) => ({
+          name: result.name,
+          description: result.description,
+          content: result.content
+      }))
+  },
+
+}
+```
+
+</details>
+
 </br><img src="./r3gardless/assets/context-provider-query.png" width="500" alt="img" /></br>
 <img src="./r3gardless/assets/context-provider-query-result.png" width="500" alt="img" /></br>
 
 **2. Submenu Type**
+
+<details>
+<summary> <code>~/.continue/config.ts</code> </summary>
+
+```Typescript
+const FoodReviewContextProvider: CustomContextProvider = {
+  title: "food-review",
+  displayTitle: "food-review",
+  description: "Food Review Context Providers",
+  type: "submenu", // submenu 옵션 추가
+  
+  getContextItems: async (
+      query: string,
+      extras: ContextProviderExtras,
+  ): Promise<ContextItem[]> => {
+      const response = await fetch("http://localhost:8000/retrieve", {
+          method: "POST",
+          headers : {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ query })
+      });
+      
+      const results = await response.json();
+
+      return results.map((result) => ({
+          name: result.name,
+          description: result.description,
+          content: result.content
+      }))
+  },
+
+  loadSubmenuItems: async (
+      args: LoadSubmenuItemsArgs,
+  ): Promise<ContextSubmenuItem[]> => {
+      const list = ["coffee", "steak", "burger"];
+      const result = list.map((item) => {
+          return {
+              id: item,
+              title: item,
+              description: `description of ${item}`,
+          };   
+      });
+      return result
+  },
+}
+
+export function modifyConfig(config: Config): Config {
+  if (!config.contextProviders) {
+      config.contextProviders = [];
+  }
+  config.contextProviders.push(FoodReviewContextProvider);
+  return config;
+}
+```
+
+</details>
+
 </br><img src="./r3gardless/assets/context-provider-submenu.png" width="500" alt="img" /></br>
 <img src="./r3gardless/assets/context-provider-submenu-result.png" width="600" alt="img" /></br>
 

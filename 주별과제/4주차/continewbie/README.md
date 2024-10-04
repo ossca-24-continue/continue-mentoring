@@ -167,15 +167,7 @@ LM Studio 공식 사이트에서 다운로드해 설치한 후,
 LM Studio에서 원하는 모델을 다운로드하고 로컬에서 실행
 config.json 파일에서 LM Studio Providers를 설정합니다.
 
-#### 5. Msty (https://msty.app/)
-   
-Msty는 Groq, Cluaude와 같은 온라인 언어 모델과 Ollama 로컬 언어 모델을 모두 지원하는 언어 모델 도구로 대화창 분할, 그룹 동시 채팅, 프롬프트 라이브러리 등 다양한 기능을 미니멀한 UI를 통해 제공합니다. 
-
-연동 방법:
-Msty 앱을 통해 모델을 실행한 후, 
-config.json 파일에서 Msty를 Providers를 설정합니다.
-
-#### 6. TextGenWebUI (https://github.com/oobabooga/text-generation-webui)
+#### 5. TextGenWebUI (https://github.com/oobabooga/text-generation-webui)
 
 TextGenWebUI는 Gradio 기반 웹 인터페이스로 다양한 텍스트 생성 모델과 파라미터를 쉽게 선택하여 원하는 텍스트를 만들 수 있습니다. Conda 환경 구성, 소스코드 다운로드, 설치 및 실행, web ui실행, 모델 다운로드 순의 진행을 통해 사용 가능합니다. 
 

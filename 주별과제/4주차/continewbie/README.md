@@ -60,7 +60,46 @@ Anthropic, OpenAI, Mistral, Cohere, DeepSeek가 여기에 속합니다.
 
 Azure OpenAI, Amazon Bedrock, AWS SageMaker, IBM Watsonx, SambaNova Cloud가 여기에 속합니다.
 
+클라우드 AI 제공업체의 모델을 연동하는 방법은 주로 **API 연결**을 통해 이루어집니다.
+
 #### 예시 Provider 연동 방법
+
+1. 먼저, 사용하고자 하는 클라우드 AI 의 API 키를 얻는다.
+   
+   `Mistral` 의 경우,  [Mistral Dashboard](https://console.mistral.ai/)에서 얻을 수 있다.
+
+2. continue 의 `Add chat model`을 통해서 provider 와 모델를 선택 후, API 키를 입력한다.  
+
+   혹은, config.json 에 직접 추가할 수도 있다. 
+
+
+`config.json` 예시
+```
+{
+  "models": [
+    {
+      "title": "Mistral Large",
+      "provider": "mistral",
+      "model": "mistral-large-latest",
+      "apiKey": "[API_KEY]"
+    }
+  ]
+}
+```
+예를 들어, Mistral 에서 제공하는 모델을 Chat 모델로 사용하고 싶은 경우 위와 같이 config.json 을 작성할 수 있다. 
+
+#### 클라우드 AI 사용의 장점
+
+클라우드 AI Provider 를 사용할 경우, 물리적인 인프라를 구축할 필요 없이 사용한 만큼만 지불하는 구조(Pay-as-you-go)를 통해 초기 투자 비용을 크게 절감할 수 있습니다.
+
+#### 클라우드 AI 사용의 단점
+
+1. API를 이용해서 데이터를 전송하기 때문에 데이터가 제3자와 공유될 수 있는 위험성이 존재한다.
+
+   다만, OpenAI 엔터프라이즈 고객의 데이터를 사용하여 서비스 개선이나 모델 훈련에 사용하지 않겠다고 명시하는 등 보호 조치가 존재한다.
+
+2. 장기적으로 볼 경우에는 사용량이 증가하면 지속적으로 발생하는 비용이 더 들 수도 있다. 
+
 
 ### AI 모델 배포 및 관리 도구
 

@@ -6,7 +6,7 @@
 
 `type:submenu` 예제 코드 적용 시 어려움이 있었습니다. 유사한 상황이 다른 유저들에게도 충분히 있었던 것으로 보이고 해당 유틸 함수가 IDE 내에서 제거된 것으로 보여 이에 맞게 문서를 업데이트하는 것이 좋을 것이라고 판단했습니다.
 
-![seokyoung-01.png](./image/seokyoung-01.png)
+![seokyoung-01.png](./assets/seokyoung-01.png)
 
 #### 목적
 
@@ -17,9 +17,9 @@
 
 제거된 `listWorkspaceContents` 대신 `getWorkspaceDir`를 사용해 `type:submenu` 예제 코드 정상 출력
 
-| as-is                                         | to-be                                         |
-| --------------------------------------------- | --------------------------------------------- |
-| ![seokyoung-02.png](./image/seokyoung-02.png) | ![seokyoung-03.png](./image/seokyoung-03.png) |
+| as-is                                          | to-be                                          |
+| ---------------------------------------------- | ---------------------------------------------- |
+| ![seokyoung-02.png](./assets/seokyoung-02.png) | ![seokyoung-03.png](./assets/seokyoung-03.png) |
 
 ### 2. Custom Context Provider
 
@@ -29,11 +29,11 @@
 
 Action(`/`)의 경우 드롭다운 최하단의 `Build a custom prompt`를 클릭 시 바로 `./prmopts`가 만들어지며, prompt 커스텀을 위한 기본 가이드가 자동으로 세팅됩니다.
 
-![seokyoung-04.png](./image/seokyoung-04.png)
+![seokyoung-04.png](./assets/seokyoung-04.png)
 
 Context(`@`)의 경우 드롭다운 최하단에 `Add more context providers`가 있지만 클릭하면 공식문서로 넘어가게 됩니다.
 
-![seokyoung-05.png](./image/seokyoung-05.png)
+![seokyoung-05.png](./assets/seokyoung-05.png)
 
 개인적으로 코드 작업 시 화면 스위칭이 없다는 점이 Continue를 사용했을 때 강력한 장점으로 보았기 때문에 Continue 사용 시 최대한 워크스페이스를 떠나지 않는 게 좋다고 봅니다.
 

@@ -11,7 +11,7 @@
 - 3조 : RAG, RAG in continue 
 - 4조 : LLM, LLM benchmarks(for code), 선택가이드
 
-### 조별 표
+### 조별 발표
 - 조별 최대 20분
 
 ## 2. 회고

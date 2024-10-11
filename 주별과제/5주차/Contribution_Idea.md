@@ -25,3 +25,6 @@
      업무용 모드로 선택하면 나와 다른 직원들의 코드를 보고 변수명, 코드 스타일 등 추천   
      nodecount = 0     "변수 생성 규칙이 적용된 nodeCount를 추천합니다."    
      변경 : ctrl + shift + c, 무시 : ESC
+
+## SSH Client 추가 지원
+  - SSH Client 프로그램에도 VS CODE와 같이 확장 프로그램 지원

@@ -12,15 +12,32 @@
 ## 한국어 번역(다국어 지원)  
  - [Continue 공식 문서](https://docs.continue.dev/)의 한글화   
   
-## Continue-C  (Continue Change, GPTs 유사)  
- - 배경 : Continue를 특정 목적에 특화하여 사용할 수 있도록  
- - 예 :  
-   1. 교육용  
-      언어 : Python, C, JAVA 등 선택  
-      사용 : "print("Hello World") 라고 써보세요.  
-              ctrl + shift + F7 또는 ▷ 버튼을 누르세요.  
-      실행 : Hello World 표시됩니다. Print()는 화면에 출력할 때 사용합니다.  
-        
-   2. 업무용  
-      nodecount = 0     "변수 생성 규칙이 적용된 nodeCount를 추천합니다."  변경 : ctrl + shift + c, 무시 : ESC   
+## Continue-C (Continue Change, GPTs 유사)
+
+- **배경**: Continue를 특정 목적에 맞게 특화하여 사용할 수 있도록 하기 위함
+
+- **예시**:
+
+  ### 1. 교육용
+  - **언어**: Python, C, JAVA 등 선택 가능
+  - **사용 예**:
+    ```python
+    print("Hello World")
+    ```
+    위와 같이 코드를 작성해보세요.
+    
+    - 실행 방법: `Ctrl + Shift + F7` 또는 ▶️ 버튼을 누르세요.
+    - 실행 결과: `Hello World`가 화면에 표시됩니다.
+    - **설명**: `print()`는 화면에 출력을 할 때 사용하는 함수입니다.
+
+  ### 2. 업무용
+  - **예시**: 
+    ```plaintext
+    nodecount = 0
+    ```
+    위 코드를 작성했을 때, "변수 생성 규칙이 적용된 `nodeCount`를 추천합니다."라는 메시지가 나타납니다.
+    
+  - **변경 방법**: `Ctrl + Shift + C`를 눌러 수정  
+  - **무시 방법**: `ESC`를 눌러 무시
+
       

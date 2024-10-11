@@ -17,10 +17,9 @@
 - 예 :  
   1. 교육용  
      언어 : Python, C, JAVA 등 선택  
-     사용 : "print("Hello World") 라고 써보세요.  
-             ctrl + shift + F7 또는 ▷ 버튼을 누르세요.  
+     사용 : "print("Hello World") 라고 써보세요.  ctrl + shift + F7 또는 ▷ 버튼을 누르세요.    
      실행 : Hello World 표시됩니다. Print()는 화면에 출력할 때 사용합니다.  
         
   2. 업무용  
-     nodecount = 0     "변수 생성 규칙이 적용된 nodeCount를 추천합니다."  
+     nodecount = 0     "변수 생성 규칙이 적용된 nodeCount를 추천합니다."    
      변경 : ctrl + shift + c, 무시 : ESC

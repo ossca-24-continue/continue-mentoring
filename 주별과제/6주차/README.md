@@ -29,6 +29,14 @@ https://www.youtube.com/watch?v=bRU5SIOk-qo
 
 #### 3조
 
+- AI 응답 생성 중 입력 막기 [#2528](https://github.com/continuedev/continue/pull/2528)
+    - AI 응답 중일 때 `button` 태그 `disabled` 속성으로 `<EnterButton />` 버튼 비활성화
+- GUI 테스트 환경 개선 [#2539](https://github.com/continuedev/continue/pull/2539)
+    - Vitest와 Testing Library를 사용하여 통합 테스트 환경 구축
+- Reranking model 문서 개선 [#2569](https://github.com/continuedev/continue/pull/2569)
+    - `rerank-1` 모델을 `rerank-2` 모델로 교체
+- Build your own context provider 문서 내 `type:submenu` 예제 코드 개선 [#2582](https://github.com/continuedev/continue/pull/2582)
+    - 더 이상 사용되지 않는 `listWorkspaceContents()` 를 `getWorkspaceDirs()` 로 대체
 #### 4조
 
 *(Contribution Idea 등록 예정)*

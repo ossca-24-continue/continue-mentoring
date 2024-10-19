@@ -20,6 +20,11 @@ https://www.youtube.com/watch?v=bRU5SIOk-qo
 
 #### 1조
 
+- 진행 내용
+  - Model Provider에 간략한 설명 추가 : 4주차 과제를 하며 Provider를 조사할 때, Continue Providers 공식 문서에 각 Provider가 어떤 서비스인지에 대한 설명이 없는 경우가 많았음. 만약 각 Provider마다 간략한 설명이 있다면, AI 서비스에 익숙지 않은 사용자가 자신의 상황과 맞는 Provider를 선택하는 데 도움이 될 거라고 생각함.
+  - Model Provider 연동 과정 구체화 : 현재의 Model Provider 문서들은 대부분이 config 형식만 제공하는 형태여서, Provider를 직접 연동하는 과정에서 헤매는 경우가 있음. 일부 연동에 어려움이 있는 Provider의 경우 연동 과정을 구체화하여 작성하고, 사전작업에 대한 안내가 아예 누락된 Provider의 경우 간략하게 추가하여 다른 문서들과의 형식을 맞추고자 함.
+- PR 링크 : https://github.com/continuedev/continue/pull/2575
+
 #### 2조
 
 #### 3조

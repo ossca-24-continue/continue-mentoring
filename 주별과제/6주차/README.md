@@ -36,13 +36,13 @@ https://www.youtube.com/watch?v=bRU5SIOk-qo
 
 ## 공지
 ### 멘티 활동 보고서 작성
-10월 21일 월요일 18시까지  
+- 10월 21일 월요일 18시까지
+- 멘토링 프로그램 수료 필수 조건(+출석)
 
-### Contribution MVP
+### Contribution MVP
 - 기여했어요 스레드에 공유해준 모든 멘티
 - 스벅(멘토사비ㅋ)
 
 ### 멘토링 저장소 public 전환
-
 
 ## 사진촬영

@@ -49,3 +49,7 @@
 이영주
 - https://tomymoon.tistory.com/156
 - https://tomymoon.tistory.com/163
+
+왕지은
+- https://nuew.tistory.com/entry/customize-prompt-set-a-completionOptions-in-Continue
+- https://nuew.tistory.com/entry/setting-the-Continue-at-vscode

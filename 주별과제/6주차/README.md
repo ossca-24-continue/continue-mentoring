@@ -27,6 +27,18 @@ https://www.youtube.com/watch?v=bRU5SIOk-qo
 
 #### 2조
 
+- **Fix Android Studio troubleshooting issue link**
+
+  - [PR 링크](https://github.com/continuedev/continue/pull/2514)
+  - 문제: 공식 문서 내 Android Studio Operation 관련 링크 에러
+  - 해결: `Actions > Choose Boot runtime for the IDE`로 수정
+
+- **refactor: Prevent Unrecognized DOM Prop Warning for showAbove in ModeSelect**
+  - [PR 링크](https://github.com/continuedev/continue/pull/2508), [블로그 링크](https://tomymoon.tistory.com/163)
+  - 문제: React does not recognize the `showAbove` prop on a DOM element.
+  - 원인: styled-components를 사용해서 스타일링하고 있는데 props가 전달될 때 HTML 요소에 직접 전달되어 경고창이 출력되고 있었다.
+  - 해결: ModelSelect.tsx의 모든 `showAbove` props 이름을 `$showabove`로 변경하면 콘솔창에 경고가 출력되지 않는다.
+
 #### 3조
 
 - AI 응답 생성 중 입력 막기 [#2528](https://github.com/continuedev/continue/pull/2528)
